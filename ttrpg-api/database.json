@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "DungeonMaster42",
+      "email": "dm42@example.com",
+      "password": "hashedpassword1"
+    },
+    {
+      "id": 2,
+      "username": "ElfWarrior",
+      "email": "elf@example.com",
+      "password": "hashedpassword2"
+    },
+    {
+      "id": 3,
+      "username": "ChaosMage",
+      "email": "mage@example.com",
+      "password": "hashedpassword3"
+    }
+  ],
+  "rulesets": [
+    {
+      "id": 1,
+      "name": "Dungeons & Dragons 5e"
+    },
+    {
+      "id": 2,
+      "name": "Call of Cthulhu"
+    },
+    {
+      "id": 3,
+      "name": "Pathfinder 2e"
+    }
+  ],
+  "games": [
+    {
+      "id": 1,
+      "group_name": "The Lost Dungeon",
+      "ruleset_id": 1,
+      "date": "2025-04-10",
+      "start_time": "18:00",
+      "end_time": "22:00",
+      "join_url": "https://example.com/join/lostdungeon",
+      "organizer_id": 1,
+      "max_players": 5,
+      "rp_pref": 4,
+      "isOneShot": false
+    },
+    {
+      "id": 2,
+      "group_name": "Cthulhu Rising",
+      "ruleset_id": 2,
+      "date": "2025-04-15",
+      "start_time": "19:00",
+      "end_time": "23:00",
+      "join_url": "https://example.com/join/cthulhu",
+      "organizer_id": 3,
+      "max_players": 4,
+      "rp_pref": 5,
+      "isOneShot": true
+    }
+  ],
+  "game_participants": [
+    {
+      "id": 1,
+      "game_id": 1,
+      "user_id": 2
+    },
+    {
+      "id": 2,
+      "game_id": 1,
+      "user_id": 3
+    },
+    {
+      "id": 3,
+      "game_id": 2,
+      "user_id": 2
+    }
+  ]
+}
