@@ -1,4 +1,3 @@
-//views → ApplicationViews.jsx
 import { Routes, Route } from "react-router-dom";
 import { GameList } from "../components/games/GameList";
 import { GameFilterBar } from "../components/games/GameFilterBar";
