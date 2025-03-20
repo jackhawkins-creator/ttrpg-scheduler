@@ -5,6 +5,7 @@ import { GameList } from "../components/games/GameList";
 import { GameFilterBar } from "../components/games/GameFilterBar";
 import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
+import { Profile } from "../components/Profile";
 
 export const ApplicationViews = () => {
   const [games, setGames] = useState([]);
@@ -72,6 +73,7 @@ export const ApplicationViews = () => {
         />
       </Route>
       <Route path="/create-game" element={<CreateForm />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 };
