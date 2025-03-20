@@ -25,7 +25,7 @@ export const Login = () => {
           "ttrpg_user",
           JSON.stringify({ id: foundUsers[0].id })
         );
-        navigate("/");
+        navigate("/all-games");
       } else {
         window.alert("Invalid login. Check username and email.");
       }

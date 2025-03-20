@@ -1,36 +1,35 @@
+//components → Profile.jsx
 import { useEffect, useState } from "react";
-import { getGames, getUserById } from "../services/GameService";
+import { useParams } from "react-router-dom";
+import { getUserById, getGames } from "../services/GameService";
 
 export const Profile = () => {
+  const { userId } = useParams(); // Get the userId from the URL
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("ttrpg_user"));
+    // Fetch the user details based on the userId
+    getUserById(userId).then((fetchedUser) => {
+      setUser(fetchedUser);
 
-    if (storedUser) {
-      // Fetch the user details using the stored user ID
-      getUserById(storedUser.id).then((fetchedUser) => {
-        setUser(fetchedUser);
-
-        // Fetch all games and filter ones the user is involved in
-        getGames().then((allGames) => {
-          const userGames = allGames.filter(
-            (game) =>
-              game.organizer_id === fetchedUser.id ||
-              game.participants?.some((p) => p.user_id === fetchedUser.id)
-          );
-          setGames(userGames);
-        });
+      // Fetch all games and filter ones the user is involved in
+      getGames().then((allGames) => {
+        const userGames = allGames.filter(
+          (game) =>
+            game.organizer_id === fetchedUser.id ||
+            game.participants?.some((p) => p.user_id === fetchedUser.id)
+        );
+        setGames(userGames);
       });
-    }
-  }, []);
+    });
+  }, [userId]); // Depend on userId so the data re-fetches when the URL changes
 
   if (!user) return <p>Loading...</p>;
 
   return (
     <div className="profile">
-      <h2>Welcome, {user.username}!</h2>
+      <h2>{user.username}</h2>
       <h3>Your Games:</h3>
       {games.length > 0 ? (
         <ul>

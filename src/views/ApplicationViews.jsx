@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
-import { NavBar } from "../components/NavBar";
+//views → ApplicationViews.jsx
+import { Routes, Route } from "react-router-dom";
 import { GameList } from "../components/games/GameList";
 import { GameFilterBar } from "../components/games/GameFilterBar";
+import { NavBar } from "../components/NavBar";
+import { Profile } from "../components/Profile";
+import { GameDetails } from "../components/games/GameDetails";
+import { useEffect, useState } from "react";
 import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
-import { Profile } from "../components/Profile";
 
 export const ApplicationViews = () => {
   const [games, setGames] = useState([]);
@@ -18,11 +20,9 @@ export const ApplicationViews = () => {
     });
   }, []);
 
-  // Filter handler function
   const handleFilter = ({ search, ruleset, sessionType, rpPref }) => {
     let filtered = [...games];
 
-    // Filter by search
     if (search) {
       filtered = filtered.filter(
         (game) =>
@@ -31,19 +31,16 @@ export const ApplicationViews = () => {
       );
     }
 
-    // Filter by ruleset
     if (ruleset) {
       filtered = filtered.filter((game) => game.ruleset_id === parseInt(ruleset));
     }
 
-    // Filter by session type
     if (sessionType) {
       filtered = filtered.filter(
         (game) => game.isOneShot === (sessionType === "oneshot")
       );
     }
 
-    // Filter by roleplaying preference
     if (rpPref) {
       filtered = filtered.filter((game) => game.rp_pref === parseInt(rpPref));
     }
@@ -52,28 +49,14 @@ export const ApplicationViews = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <NavBar />
-            <Outlet />
-          </>
-        }
-      >
-        <Route
-          path="/all-games"
-          element={
-            <>
-              <GameFilterBar onFilter={handleFilter} />
-              <GameList games={filteredGames} />
-            </>
-          }
-        />
-      </Route>
-      <Route path="/create-game" element={<CreateForm />} />
-      <Route path="/profile" element={<Profile />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/all-games" element={<><GameFilterBar onFilter={handleFilter} /><GameList games={filteredGames} /></>} />
+        <Route path="/profile/:userId" element={<Profile />} /> {/* Dynamic profile route */}
+        <Route path="/create-game" element={<CreateForm />} />
+        <Route path="/games/:gameId" element={<GameDetails />} />
+      </Routes>
+    </>
   );
 };

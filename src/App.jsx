@@ -10,17 +10,7 @@ export const App = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-
-      <Route
-        path="*"
-        element={
-          // Check if the user is authorized first
-          <Authorized>
-            {/* ApplicationViews is the CHILD component of Authorized. */}
-            <ApplicationViews />
-          </Authorized>
-        }
-      />
+      <Route path="*" element={<Authorized><ApplicationViews /></Authorized>} />
     </Routes>
   );
 };
