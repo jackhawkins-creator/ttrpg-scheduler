@@ -16,7 +16,7 @@ export const GameList = ({ games }) => {
           </p>
           <p>Organizer: {game.organizerUsername}</p>
           <p>
-            Slots Filled: {game.currentPlayers}/{game.max_players}
+            Player Slots Filled: {game.currentPlayers}/{game.max_players}
           </p>
         </div>
       ))}

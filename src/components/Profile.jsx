@@ -1,12 +1,12 @@
-//components → Profile.jsx
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getUserById, getGames } from "../services/GameService";
 
 export const Profile = () => {
   const { userId } = useParams(); // Get the userId from the URL
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
+  const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
 
   useEffect(() => {
     // Fetch the user details based on the userId
@@ -41,6 +41,13 @@ export const Profile = () => {
         </ul>
       ) : (
         <p>You are not currently in any games.</p>
+      )}
+
+      {/* Only show the "Edit Profile" button if the logged-in user is viewing their own profile */}
+      {currentUser && currentUser.id === user.id && (
+        <Link to="/edit-profile">
+          <button>Edit Profile</button>
+        </Link>
       )}
     </div>
   );

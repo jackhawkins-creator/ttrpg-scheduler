@@ -14,9 +14,9 @@
     },
     {
       "id": 3,
-      "username": "ChaosMage",
-      "email": "mage@example.com",
-      "password": "hashedpassword3"
+      "username": "ChaosStooge",
+      "email": "mage@example.net",
+      "password": "1"
     }
   ],
   "rulesets": [
@@ -39,7 +39,7 @@
       "group_name": "The Lost Dungeon",
       "ruleset_id": 1,
       "date": "2025-04-10",
-      "start_time": "18:00",
+      "start_time": "18:01",
       "end_time": "22:00",
       "join_url": "https://example.com/join/lostdungeon",
       "organizer_id": 1,

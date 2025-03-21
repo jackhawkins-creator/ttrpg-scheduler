@@ -7,6 +7,9 @@ import { GameDetails } from "../components/games/GameDetails";
 import { useEffect, useState } from "react";
 import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
+import { EditGameForm } from "../components/forms/EditGameForm";
+import { EditProfileForm } from "../components/forms/editProfileForm";
+
 
 export const ApplicationViews = () => {
   const [games, setGames] = useState([]);
@@ -53,8 +56,10 @@ export const ApplicationViews = () => {
       <Routes>
         <Route path="/all-games" element={<><GameFilterBar onFilter={handleFilter} /><GameList games={filteredGames} /></>} />
         <Route path="/profile/:userId" element={<Profile />} /> {/* Dynamic profile route */}
+        <Route path="/edit-profile" element={<EditProfileForm />} />
         <Route path="/create-game" element={<CreateForm />} />
         <Route path="/games/:gameId" element={<GameDetails />} />
+        <Route path="/edit-game/:gameId" element={<EditGameForm />} />
       </Routes>
     </>
   );
