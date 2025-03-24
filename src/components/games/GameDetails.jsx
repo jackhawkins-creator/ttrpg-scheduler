@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getGames, getUserById } from "../../services/GameService";
-import { postGameParticipant } from "../../services/GameService";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { getGames, getUserById, postGameParticipant } from "../../services/GameService";
 
 export const GameDetails = () => {
   const { gameId } = useParams(); // Get the game ID from the URL
@@ -10,6 +9,7 @@ export const GameDetails = () => {
   const [players, setPlayers] = useState([]);
   const [isUserParticipating, setIsUserParticipating] = useState(false);
   const [isGameFull, setIsGameFull] = useState(false);
+  const navigate = useNavigate();
 
   const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
 
@@ -50,8 +50,11 @@ export const GameDetails = () => {
   // Handle "Join Game" button click
   const handleJoinGame = async () => {
     try {
-      await postGameParticipant(game.id, currentUser.id); // Create this function in GameService
+      await postGameParticipant(game.id, currentUser.id); // Add user to the game
       setIsUserParticipating(true);
+
+      // After joining, navigate to "My Games"
+      navigate("/my-games");
     } catch (error) {
       console.error("Error joining game:", error);
       window.alert("An error occurred. Please try again.");

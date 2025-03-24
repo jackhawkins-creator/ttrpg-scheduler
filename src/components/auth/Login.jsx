@@ -4,9 +4,9 @@ import "./Login.css";
 import { getUserByEmail } from "../../services/userService";
 
 export const Login = () => {
-  const [username, setUsername] = useState("ElfWarrior");
-  const [email, setEmail] = useState("elf@example.com");
-  const [password, setPassword] = useState("hashedpassword2");
+  const [username, setUsername] = useState("DungeonMaster42");
+  const [email, setEmail] = useState("dm42@example.com");
+  const [password, setPassword] = useState("hashedpassword1");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {

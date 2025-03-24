@@ -10,6 +10,10 @@ export const CreateForm = () => {
   const [endTime, setEndTime] = useState("");
   const [joinUrl, setJoinUrl] = useState("");
   const [rulesets, setRulesets] = useState([]);
+  const [isOneShot, setIsOneShot] = useState(false); // Default is Multi-Session
+  const [rpPref, setRpPref] = useState(3); // Default middle of the Likert scale (3)
+  const [maxPlayers, setMaxPlayers] = useState(6); // Default max players
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,9 +42,9 @@ export const CreateForm = () => {
       end_time: endTime,
       join_url: joinUrl,
       organizer_id: userId,
-      isOneShot: false, // Set default value for session type
-      rp_pref: 3, // Default value for roleplaying preference
-      max_players: 6, // Set default max players
+      isOneShot: isOneShot, // Set value for session type
+      rp_pref: rpPref, // Set roleplay preference
+      max_players: maxPlayers, // Set max players
     };
 
     try {
@@ -111,6 +115,58 @@ export const CreateForm = () => {
         placeholder="Join URL"
         required
       />
+
+      {/* Session Type (One-Shot or Multi-Session) */}
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="sessionType"
+            value="oneshot"
+            checked={isOneShot}
+            onChange={() => setIsOneShot(true)}
+          />
+          One-Shot
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sessionType"
+            value="multisession"
+            checked={!isOneShot}
+            onChange={() => setIsOneShot(false)}
+          />
+          Multi-Session
+        </label>
+      </div>
+
+      {/* Roleplay Preference (Likert scale 1-5) */}
+      <div>
+        <label>Roleplay Preference: </label>
+        {[1, 2, 3, 4, 5].map((num) => (
+          <label key={num}>
+            <input
+              type="checkbox"
+              value={num}
+              checked={rpPref === num}
+              onChange={() => setRpPref(num)}
+            />
+            {num}
+          </label>
+        ))}
+      </div>
+
+      {/* Max Players */}
+      <div>
+        <label>Max Players:</label>
+        <input
+          type="number"
+          value={maxPlayers}
+          onChange={(e) => setMaxPlayers(Math.max(1, e.target.value))}
+          min="1"
+          required
+        />
+      </div>
 
       {/* Submit Button */}
       <button type="submit">Create Game</button>

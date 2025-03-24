@@ -1,7 +1,14 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getGames } from "../../services/GameService";
 
-export const GameList = ({ games }) => {
+export const GameList = () => {
+  const [games, setGames] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getGames().then(setGames);
+  }, []);
 
   return (
     <div className="game-list">
@@ -16,7 +23,7 @@ export const GameList = ({ games }) => {
           </p>
           <p>Organizer: {game.organizerUsername}</p>
           <p>
-            Player Slots Filled: {game.currentPlayers}/{game.max_players}
+            Slots Filled: {game.currentPlayers}/{game.max_players}
           </p>
         </div>
       ))}
