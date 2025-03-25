@@ -42,6 +42,49 @@ export const createGame = async (game) => {
   return await res.json();
 };
 
+export const updateGame = async (gameId, updatedGame) => {
+    const res = await fetch(`http://localhost:8088/games/${gameId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedGame),
+    });
+    
+    if (!res.ok) {
+        throw new Error("Failed to update game");
+    }
+    
+    return await res.json();
+};
+
+export const deleteGame = async (gameId) => {
+  // First, delete all participants from the game
+  const participants = await fetch("http://localhost:8088/game_participants")
+    .then((res) => res.json())
+    .then((data) =>
+      data.filter((participant) => participant.game_id === gameId)
+    );
+
+  // Delete each participant
+  await Promise.all(
+    participants.map((participant) =>
+      fetch(`http://localhost:8088/game_participants/${participant.id}`, {
+        method: "DELETE",
+      })
+    )
+  );
+
+  // Now delete the game itself
+  const response = await fetch(`http://localhost:8088/games/${gameId}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete game");
+  }
+
+  return await response.json();
+};
+
 export const postGameParticipant = async (gameId, userId) => {
   const response = await fetch("http://localhost:8088/game_participants", {
     method: "POST",
@@ -57,20 +100,6 @@ export const postGameParticipant = async (gameId, userId) => {
   }
 
   return await response.json();
-};
-
-export const updateGame = async (gameId, updatedGame) => {
-  const res = await fetch(`http://localhost:8088/games/${gameId}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedGame),
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to update game");
-  }
-
-  return await res.json();
 };
 
 export const deleteGameParticipant = async (gameId, userId) => {
@@ -99,31 +128,3 @@ export const deleteGameParticipant = async (gameId, userId) => {
     return await response.json();
   };
   
-  export const deleteGame = async (gameId) => {
-    // First, delete all participants from the game
-    const participants = await fetch("http://localhost:8088/game_participants")
-      .then((res) => res.json())
-      .then((data) =>
-        data.filter((participant) => participant.game_id === gameId)
-      );
-  
-    // Delete each participant
-    await Promise.all(
-      participants.map((participant) =>
-        fetch(`http://localhost:8088/game_participants/${participant.id}`, {
-          method: "DELETE",
-        })
-      )
-    );
-  
-    // Now delete the game itself
-    const response = await fetch(`http://localhost:8088/games/${gameId}`, {
-      method: "DELETE",
-    });
-  
-    if (!response.ok) {
-      throw new Error("Failed to delete game");
-    }
-  
-    return await response.json();
-  };

@@ -16,7 +16,6 @@ export const Profile = () => {
 
       // Fetch all games and filter ones the user is involved in
       getGames().then((allGames) => {
-        // Replace .some() with filter
         const userGames = allGames.filter((game) => {
           const isOrganizer = game.organizer_id === fetchedUser.id;
           const isParticipant =

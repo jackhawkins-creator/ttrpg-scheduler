@@ -49,7 +49,7 @@ export const CreateForm = () => {
 
     try {
       await createGame(newGame);
-      navigate("/all-games");
+      navigate("/my-games");
     } catch (error) {
       console.error("Error creating game:", error);
       window.alert("Failed to create game. Please try again.");
