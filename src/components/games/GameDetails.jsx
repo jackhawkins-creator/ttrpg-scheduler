@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getGames, getUserById, postGameParticipant } from "../../services/GameService";
+import { getGames, postGameParticipant } from "../../services/GameService";
+import { getUserById } from "../../services/userService";
 
 export const GameDetails = () => {
   const { gameId } = useParams(); // Get the game ID from the URL

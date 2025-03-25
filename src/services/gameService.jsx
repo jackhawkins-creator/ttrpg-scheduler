@@ -42,10 +42,6 @@ export const createGame = async (game) => {
   return await res.json();
 };
 
-export const getUserById = (id) => {
-  return fetch(`http://localhost:8088/users/${id}`).then((res) => res.json());
-};
-
 export const postGameParticipant = async (gameId, userId) => {
   const response = await fetch("http://localhost:8088/game_participants", {
     method: "POST",
@@ -65,7 +61,7 @@ export const postGameParticipant = async (gameId, userId) => {
 
 export const updateGame = async (gameId, updatedGame) => {
   const res = await fetch(`http://localhost:8088/games/${gameId}`, {
-    method: "PATCH", // or "PUT"
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedGame),
   });

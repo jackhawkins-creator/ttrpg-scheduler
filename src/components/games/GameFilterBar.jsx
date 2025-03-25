@@ -15,7 +15,7 @@ export const GameFilterBar = ({ onFilter }) => {
 
   useEffect(() => {
     onFilter({ search, ruleset, sessionType, rpPref });
-  }, [search, ruleset, sessionType, rpPref]);
+  }, [search, ruleset, sessionType, rpPref]); //updates whenever we hear a change
 
   const handleSessionTypeChange = (value) => {
     setSessionType((prev) => (prev === value ? null : value));
@@ -38,49 +38,49 @@ export const GameFilterBar = ({ onFilter }) => {
       {/* Ruleset Dropdown */}
       <select value={ruleset} onChange={(e) => setRuleset(e.target.value)}>
         <option value="">All Rulesets</option>
-        {rulesets.map((rs) => (
-          <option key={rs.id} value={rs.id}>
-            {rs.name}
+        {rulesets.map((rset) => (
+          <option key={rset.id} value={rset.id}>
+            {rset.name}
           </option>
         ))}
       </select>
 
       {/* Session Type Radio Buttons (Deselectable) */}
       <div>
-  <label>
-    <input
-      type="checkbox"
-      value="oneshot"
-      checked={sessionType === "oneshot"}
-      onChange={() => handleSessionTypeChange("oneshot")}
-    />
-    One-Shot
-  </label>
-  <label>
-    <input
-      type="checkbox"
-      value="campaign"
-      checked={sessionType === "campaign"}
-      onChange={() => handleSessionTypeChange("campaign")}
-    />
-    Campaign
-  </label>
-</div>
+        <label>
+          <input
+            type="checkbox"
+            value="oneshot"
+            checked={sessionType === "oneshot"}
+            onChange={() => handleSessionTypeChange("oneshot")}
+          />
+          One-Shot
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="campaign"
+            checked={sessionType === "campaign"}
+            onChange={() => handleSessionTypeChange("campaign")}
+          />
+          Campaign
+        </label>
+      </div>
 
-{/* Roleplaying Preference Likert Scale (Deselectable) */}
-<div>
-  {[1, 2, 3, 4, 5].map((num) => (
-    <label key={num}>
-      <input
-        type="checkbox"
-        value={num}
-        checked={rpPref === num}
-        onChange={() => handleRpPrefChange(num)}
-      />
-      {num}
-    </label>
-  ))}
-</div>
+      {/* Roleplaying Preference Likert Scale (Deselectable) */}
+      <div>
+        {[1, 2, 3, 4, 5].map((num) => (
+          <label key={num}>
+            <input
+              type="checkbox"
+              value={num}
+              checked={rpPref === num}
+              onChange={() => handleRpPrefChange(num)}
+            />
+            {num}
+          </label>
+        ))}
+      </div>
     </div>
   );
 };

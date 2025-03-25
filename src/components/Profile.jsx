@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getUserById, getGames } from "../services/GameService";
+import { getGames } from "../services/GameService";
+import { getUserById } from "../services/userService";
 
 export const Profile = () => {
   const { userId } = useParams(); // Get the userId from the URL

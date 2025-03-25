@@ -27,9 +27,6 @@ export const MyGamesList = () => {
     try {
       await deleteGameParticipant(gameId, currentUser.id);
       setMyGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
-      
-      // Navigate to the "My Games" page
-      navigate("/my-games");
     } catch (error) {
       console.error("Error leaving game:", error);
       window.alert("An error occurred. Please try again.");
