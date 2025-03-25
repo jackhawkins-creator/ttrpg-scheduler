@@ -45,7 +45,7 @@
       "group_name": "The Lost Dungeon",
       "ruleset_id": 1,
       "date": "2025-04-10",
-      "start_time": "18:01",
+      "start_time": "18:00",
       "end_time": "22:00",
       "join_url": "https://example.com/join/lostdungeon",
       "organizer_id": 1,
@@ -84,22 +84,12 @@
       "user_id": 4
     },
     {
-      "id": 4,
-      "game_id": 2,
-      "user_id": 1
-    },
-    {
       "id": 5,
       "game_id": 2,
       "user_id": 2
     },
     {
       "id": 6,
-      "game_id": 2,
-      "user_id": 3
-    },
-    {
-      "id": 7,
       "game_id": 2,
       "user_id": 4
     }

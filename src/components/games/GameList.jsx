@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GameFilterBar } from "./GameFilterBar"; // Ensure GameFilterBar is imported
+import { GameFilterBar } from "./GameFilterBar";
 
 export const GameList = ({ games }) => {
   const navigate = useNavigate();
+  const [filteredGames, setFilteredGames] = useState([]);
 
-  const [filteredGames, setFilteredGames] = useState(games); // Initialize filtered games with all games
+  useEffect(() => {
+    if (games.length > 0) {
+      setFilteredGames(games); // Once games are fetched, set them
+    }
+  }, [games]); //will run whenever "games" prop changes
 
   const handleFilter = ({ search, ruleset, sessionType, rpPref }) => {
     let filtered = [...games]; // Shallow copy to avoid mutating original state
@@ -45,14 +50,14 @@ export const GameList = ({ games }) => {
     <div className="game-list">
       <h2>All Games</h2>
 
-      {/* Game Filter Bar with onFilter prop */}
+      {/* Game Filter Bar with handleFilter func as prop */}
       <GameFilterBar onFilter={handleFilter} />
 
-      {/* Display filtered games */}
+      {/* Display each filtered games in a card */}
       {filteredGames.map((game) => (
         <div key={game.id} className="game-card">
           <button
-            onClick={() => navigate(`/games/${game.id}`)}
+            onClick={() => navigate(`/games/${game.id}`)}  //navigate to game deets
             className="group-name"
           >
             {game.group_name}

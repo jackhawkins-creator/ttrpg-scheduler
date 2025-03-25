@@ -30,7 +30,7 @@ export const Profile = () => {
   return (
     <div className="profile">
       <h2>{user.username}</h2>
-      <h3>Your Games:</h3>
+      <h3>Current Games:</h3>
       {games.length > 0 ? (
         <ul>
           {games.map((game) => (

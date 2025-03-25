@@ -8,6 +8,7 @@ import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
 import { EditGameForm } from "../components/forms/EditGameForm";
 import { EditProfileForm } from "../components/forms/editProfileForm";
+import { MyGamesList } from "../components/MyGamesList";
 
 export const ApplicationViews = () => {
   const [games, setGames] = useState([]); //all games
@@ -29,6 +30,7 @@ export const ApplicationViews = () => {
         {/* Dynamic profile route */}
         <Route path="/edit-profile" element={<EditProfileForm />} />
         <Route path="/create-game" element={<CreateForm />} />
+        <Route path="/my-games" element={<MyGamesList />} />
         <Route path="/games/:gameId" element={<GameDetails />} />
         <Route path="/edit-game/:gameId" element={<EditGameForm />} />
       </Routes>
