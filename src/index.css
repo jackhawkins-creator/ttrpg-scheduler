@@ -1,113 +1,113 @@
-/* Import the google web fonts you want to use */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Quicksand&family=Roboto:wght@100&display=swap");
+@import "bootstrap/dist/css/bootstrap.min.css";
 
-/* FONTS
-font-family: "Nunito", sans-serif;
-font-family: "Quicksand", sans-serif;
-font-family: "Roboto", sans-serif; 
-*/
-
-/* COLOR PALETTE */
-/* Feel free to change these values and create your own color palette! https://coolors.co/ is a great resource */
-:root {
-  --primary: #ffb400;
-  --secondary: #00a6ed;
-  --info: #7fb800;
-  --warning: #f6511d;
-  --white: #ffffff;
-  --offWhite: #f2f2f3;
-  --dark: #3b3b3b;
-  --outline: #c3c0c0;
-  --appBackground: #dddade;
-}
-
-/* GLOBAL STYLES */
-body,
-button,
-input,
-select,
-textarea {
-  font-family: "Nunito", sans-serif;
-}
-
+/* index.css */
 body {
-  background-color: var(--appBackground);
-  margin: 0;
+  background-color: #f5f5f5; /* Light parchment background */
+  font-family: 'Cinzel', serif; /* Elegant, medieval-inspired font */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Roboto", serif;
+/* Navbar styles */
+.navbar {
+  background-color: #2d1b0e; /* Dark wood brown */
 }
 
-/* This prevents all the links in the app from having default underline */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-/* This prevents all the links in the app from turning purple after visiting */
-a:visited {
-  color: inherit;
-}
-/* This prevents all the inputs in the app from having that blue outline when in focus */
-input:focus {
-  outline: none;
+.navbar a {
+  color: #cfa12d; /* Gold for text */
 }
 
-/* GLOBAL STYLING FOR ALL THE BUTTONS BUTTONS */
-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  color: var(--white);
-  cursor: pointer;
+.navbar a:hover {
+  color: #f4e1a1; /* Light gold on hover */
 }
 
-/* These are all the color options for the buttons */
-/* If you change the color variables, be sure to change the hover colors to be a darker shade of the colors you chose*/
-.btn-primary {
-  background-color: var(--primary);
+/* Button styles */
+.btn {
+  background-color: #9e7a4d; /* Rustic bronze for buttons */
+  color: white;
+  border: none;
 }
 
-.btn-primary:hover {
-  background-color: #e5a000;
+.btn:hover {
+  background-color: #cfa12d; /* Gold on hover */
 }
 
-.btn-secondary {
-  background-color: var(--secondary);
+/* Card styles */
+.card {
+  background-color: #fff8e1; /* Slight parchment background for cards */
+  border: 1px solid #6b4f2d; /* Dark border */
 }
 
-.btn-secondary:hover {
-  background-color: #0097d7;
+.card-header {
+  background-color: #2d1b0e; /* Dark wood for card headers */
+  color: #cfa12d; /* Gold text */
 }
 
-.btn-warning {
-  background-color: var(--warning);
+.card-footer {
+  background-color: #f1e0c6; /* Lighter parchment */
 }
 
-.btn-warning:hover {
-  background-color: #e14617;
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  color: #2d1b0e; /* Dark brown for headings */
 }
 
-.btn-info {
-  background-color: var(--info);
+h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  color: #9e7a4d; /* Rustic bronze for smaller headings */
 }
 
-.btn-info:hover {
-  background-color: #71a500;
+/* Inputs, select, and other form elements */
+input, select, textarea {
+  background-color: #fff8e1;
+  border: 1px solid #6b4f2d;
+  color: #2d1b0e;
 }
 
-/* This CSS can be deleted. It is only used for the first chapter */
-.welcome {
-  text-align: center;
-  margin: 5rem 14rem;
-  font-size: 4rem;
-  color: aliceblue;
-  font-weight: bold;
-  text-shadow: 2px 3px 4px lightslategray;
+input:focus, select:focus, textarea:focus {
+  border-color: #cfa12d;
 }
 
+/* Game List Card Styling */
+.game-card {
+  border: 1px solid #6b4f2d;
+  background-color: #f5e1a1;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.game-card button {
+  background-color: #9e7a4d;
+  color: white;
+}
+
+.game-card button:hover {
+  background-color: #cfa12d;
+}
+
+/* Make Navbar Mobile Friendly */
+@media (max-width: 768px) {
+  .navbar {
+    font-size: 14px; /* Reduce text size on small screens */
+  }
+
+  .navbar-item {
+    padding: 0.5rem;
+  }
+
+  .game-card {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+/* Ensure buttons in game list and cards fit well on small screens */
+@media (max-width: 576px) {
+  .btn {
+    width: 100%; /* Full-width buttons on mobile */
+    margin-bottom: 10px;
+  }
+
+  .game-list .game-card button {
+    width: 100%; /* Full-width buttons inside the game card */
+  }
+}
