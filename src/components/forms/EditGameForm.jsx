@@ -5,13 +5,17 @@ import { getGames, updateGame } from "../../services/GameService"; // Assuming `
 export const EditGameForm = () => {
   const { gameId } = useParams();
   const navigate = useNavigate();
-  
+
   const [game, setGame] = useState(null);
   const [groupName, setGroupName] = useState("");
   const [ruleset, setRuleset] = useState("");
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [joinUrl, setJoinUrl] = useState("");
+  const [isOneShot, setIsOneShot] = useState(false);
+  const [rpPref, setRpPref] = useState(3); // Default middle of the Likert scale (3)
+  const [maxPlayers, setMaxPlayers] = useState(6); // Default max players
   const [rulesets, setRulesets] = useState([]);
 
   useEffect(() => {
@@ -25,6 +29,10 @@ export const EditGameForm = () => {
         setDate(selectedGame.date);
         setStartTime(selectedGame.start_time);
         setEndTime(selectedGame.end_time);
+        setJoinUrl(selectedGame.join_url);
+        setIsOneShot(selectedGame.isOneShot);
+        setRpPref(selectedGame.rp_pref);
+        setMaxPlayers(selectedGame.max_players);
       }
     });
 
@@ -42,6 +50,10 @@ export const EditGameForm = () => {
       date,
       start_time: startTime,
       end_time: endTime,
+      join_url: joinUrl,
+      isOneShot,
+      rp_pref: rpPref,
+      max_players: maxPlayers,
     };
 
     updateGame(gameId, updatedGame)
@@ -109,6 +121,65 @@ export const EditGameForm = () => {
             type="time"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Join URL</label>
+          <input
+            type="url"
+            value={joinUrl}
+            onChange={(e) => setJoinUrl(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="sessionType"
+              value="oneshot"
+              checked={isOneShot}
+              onChange={() => setIsOneShot(true)}
+            />
+            One-Shot
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="sessionType"
+              value="multisession"
+              checked={!isOneShot}
+              onChange={() => setIsOneShot(false)}
+            />
+            Multi-Session
+          </label>
+        </div>
+
+        <div>
+          <label>Roleplay Preference: </label>
+          {[1, 2, 3, 4, 5].map((num) => (
+            <label key={num}>
+              <input
+                type="radio"
+                value={num}
+                checked={rpPref === num}
+                onChange={() => setRpPref(num)}
+              />
+              {num}
+            </label>
+          ))}
+        </div>
+
+        <div>
+          <label>Max Players:</label>
+          <input
+            type="number"
+            value={maxPlayers}
+            onChange={(e) => setMaxPlayers(Math.max(1, e.target.value))}
+            min="1"
             required
           />
         </div>

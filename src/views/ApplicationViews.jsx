@@ -9,7 +9,6 @@ import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
 import { EditGameForm } from "../components/forms/EditGameForm";
 import { EditProfileForm } from "../components/forms/editProfileForm";
-import { MyGamesList } from "../components/MyGamesList";
 
 
 export const ApplicationViews = () => {
@@ -56,7 +55,6 @@ export const ApplicationViews = () => {
       <NavBar />
       <Routes>
         <Route path="/all-games" element={<><GameFilterBar onFilter={handleFilter} /><GameList games={filteredGames} /></>} />
-        <Route path="/my-games" element={<MyGamesList />} />
         <Route path="/profile/:userId" element={<Profile />} /> {/* Dynamic profile route */}
         <Route path="/edit-profile" element={<EditProfileForm />} />
         <Route path="/create-game" element={<CreateForm />} />

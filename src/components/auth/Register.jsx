@@ -47,7 +47,7 @@ export const Register = () => {
 
       if (newUser?.id) {
         localStorage.setItem("ttrpg_user", JSON.stringify({ id: newUser.id }));
-        navigate("/");
+        navigate("/all-games");
       }
     } catch (error) {
       console.error("Error during registration:", error);
