@@ -11,7 +11,6 @@ export const GameDetails = () => {
   const [isUserParticipating, setIsUserParticipating] = useState(false);
   const [isGameFull, setIsGameFull] = useState(false);
   const navigate = useNavigate();
-
   const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
 
   // Fetch game details when the component mounts
@@ -31,14 +30,13 @@ export const GameDetails = () => {
         setPlayers(fetchedPlayers);
       });
 
-      // Check if the current user is already a participant
-      setIsUserParticipating(
-        selectedGame.participants.some(
+      // Check if the current user is a participant
+      const userIsParticipant =
+        selectedGame.participants.filter(
           (participant) => participant.user_id === currentUser.id
-        )
-      );
+        ).length > 0;
+      setIsUserParticipating(userIsParticipant);
 
-      // Check if the game is full
       setIsGameFull(selectedGame.currentPlayers >= selectedGame.max_players);
     });
   }, [gameId]);
@@ -92,7 +90,7 @@ export const GameDetails = () => {
           Join Game
         </a>
       </p>
-      
+
       {/* Display the "Edit Game" button only if the current user is the organizer */}
       {currentUser.id === game.organizer_id && (
         <Link to={`/edit-game/${game.id}`} className="btn btn-primary">

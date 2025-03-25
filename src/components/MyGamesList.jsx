@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteGame, deleteGameParticipant, getGames } from "../services/GameService";
+import {
+  deleteGame,
+  deleteGameParticipant,
+  getGames,
+} from "../services/GameService";
 
 export const MyGamesList = () => {
   const [myGames, setMyGames] = useState([]);
@@ -14,7 +18,8 @@ export const MyGamesList = () => {
       const filteredGames = allGames.filter(
         (game) =>
           game.organizer_id === currentUser.id ||
-          game.participants.some((p) => p.user_id === currentUser.id)
+          game.participants.filter((p) => p.user_id === currentUser.id).length >
+            0
       );
       setMyGames(filteredGames);
     };
@@ -32,7 +37,7 @@ export const MyGamesList = () => {
       window.alert("An error occurred. Please try again.");
     }
   };
-  
+
   // Handle "Delete Game" button click (organizer only)
   const handleDeleteGame = async (gameId) => {
     try {
@@ -52,21 +57,34 @@ export const MyGamesList = () => {
         <ul>
           {myGames.map((game) => (
             <li key={game.id}>
-              <button onClick={() => navigate(`/games/${game.id}`)} className="group-name">
+              <button
+                onClick={() => navigate(`/games/${game.id}`)}
+                className="group-name"
+              >
                 {game.group_name}
               </button>
-              <p>Scheduled: {game.date} from {game.start_time} to {game.end_time}</p>
+              <p>
+                Scheduled: {game.date} from {game.start_time} to {game.end_time}
+              </p>
               <p>Organizer: {game.organizerUsername}</p>
-              <p>Players: {game.currentPlayers}/{game.max_players}</p>
+              <p>
+                Players: {game.currentPlayers}/{game.max_players}
+              </p>
 
               {/* Show "Leave Game" button if the current user is a participant, but not the organizer */}
-              {game.organizer_id !== currentUser.id && game.participants.some((p) => p.user_id === currentUser.id) && (
-                <button onClick={() => handleLeaveGame(game.id)}>Leave Game</button>
-              )}
+              {game.organizer_id !== currentUser.id &&
+                game.participants.filter((p) => p.user_id === currentUser.id)
+                  .length > 0 && (
+                  <button onClick={() => handleLeaveGame(game.id)}>
+                    Leave Game
+                  </button>
+                )}
 
               {/* Show "Delete Game" button if the current user is the organizer */}
               {game.organizer_id === currentUser.id && (
-                <button onClick={() => handleDeleteGame(game.id)}>Delete Game</button>
+                <button onClick={() => handleDeleteGame(game.id)}>
+                  Delete Game
+                </button>
               )}
             </li>
           ))}

@@ -16,15 +16,19 @@ export const Profile = () => {
 
       // Fetch all games and filter ones the user is involved in
       getGames().then((allGames) => {
-        const userGames = allGames.filter(
-          (game) =>
-            game.organizer_id === fetchedUser.id ||
-            game.participants?.some((p) => p.user_id === fetchedUser.id)
-        );
+        // Replace .some() with filter
+        const userGames = allGames.filter((game) => {
+          const isOrganizer = game.organizer_id === fetchedUser.id;
+          const isParticipant =
+            game.participants.filter((p) => p.user_id === fetchedUser.id)
+              .length > 0;
+          return isOrganizer || isParticipant;
+        });
         setGames(userGames);
       });
     });
-  }, [userId]); // Depend on userId so the data re-fetches when the URL changes
+  }, [userId]);
+  // Depend on userId so the data re-fetches when the URL changes
 
   if (!user) return <p>Loading...</p>;
 
@@ -36,7 +40,8 @@ export const Profile = () => {
         <ul>
           {games.map((game) => (
             <li key={game.id}>
-              {game.group_name} – {game.date} ({game.start_time} to {game.end_time})
+              {game.group_name} – {game.date} ({game.start_time} to{" "}
+              {game.end_time})
             </li>
           ))}
         </ul>
