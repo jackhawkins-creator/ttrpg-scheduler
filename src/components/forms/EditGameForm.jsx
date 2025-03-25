@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getGames, updateGame } from "../../services/GameService"; // Assuming `updateGame` is a function you will create
+import { getGames, updateGame } from "../../services/GameService";
 
 export const EditGameForm = () => {
   const { gameId } = useParams();

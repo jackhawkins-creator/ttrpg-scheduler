@@ -26,7 +26,7 @@ export const getGames = async () => {
       ruleset: ruleset ? ruleset.name : "Unknown",
     };
   });
-};
+}; // finds organizer, number of participants, and game ruleset; returns array where each game has orgusername, currentplayers #, participants' usernames, and ruleset
 
 export const createGame = async (game) => {
   const res = await fetch("http://localhost:8088/games", {
