@@ -59,114 +59,138 @@ export const CreateForm = ({ triggerGameListRefresh }) => {
 
   return (
     <form className="create-form" onSubmit={handleSubmit}>
-      <h2>Create New Game</h2>
+      <h2 className="text-center">Create New Game</h2>
 
       {/* Group Name */}
-      <input
-        type="text"
-        value={groupName}
-        onChange={(e) => setGroupName(e.target.value)}
-        placeholder="Group Name"
-        required
-      />
+      <div>
+        <label>Group Name</label>
+        <input
+          type="text"
+          value={groupName}
+          onChange={(e) => setGroupName(e.target.value)}
+          placeholder="Group Name"
+          required
+        />
+      </div>
 
       {/* Ruleset Dropdown */}
-      <select
-        value={ruleset}
-        onChange={(e) => setRuleset(e.target.value)}
-        required
-      >
-        <option value="">Select Ruleset</option>
-        {rulesets.map((rs) => (
-          <option key={rs.id} value={rs.id}>
-            {rs.name}
-          </option>
-        ))}
-      </select>
+      <div>
+        <label>Ruleset</label>
+        <select
+          value={ruleset}
+          onChange={(e) => setRuleset(e.target.value)}
+          required
+        >
+          <option value="">Select Ruleset</option>
+          {rulesets.map((rs) => (
+            <option key={rs.id} value={rs.id}>
+              {rs.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* Date */}
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        required
-      />
+      <div>
+        <label>Date</label>
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          required
+        />
+      </div>
 
       {/* Start Time */}
-      <input
-        type="time"
-        value={startTime}
-        onChange={(e) => setStartTime(e.target.value)}
-        required
-      />
+      <div>
+        <label>Start Time</label>
+        <input
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+          required
+        />
+      </div>
 
       {/* End Time */}
-      <input
-        type="time"
-        value={endTime}
-        onChange={(e) => setEndTime(e.target.value)}
-        required
-      />
+      <div>
+        <label>End Time</label>
+        <input
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+          required
+        />
+      </div>
 
       {/* Join URL */}
-      <input
-        type="url"
-        value={joinUrl}
-        onChange={(e) => setJoinUrl(e.target.value)}
-        placeholder="Join URL"
-        required
-      />
+      <div>
+        <label>Join URL</label>
+        <input
+          type="url"
+          value={joinUrl}
+          onChange={(e) => setJoinUrl(e.target.value)}
+          placeholder="Join URL"
+          required
+        />
+      </div>
 
       {/* Session Type (One-Shot or Multi-Session) */}
       <div>
-        <label>
+        <label style={{ fontWeight: "bold" }}>Session Type</label>
+        <div className="form-check form-check-inline">
           <input
-            type="radio"
+            type="checkbox"
             name="sessionType"
             value="oneshot"
             checked={isOneShot}
             onChange={() => setIsOneShot(true)}
+            className="form-check-input"
           />
-          One-Shot
-        </label>
-        <label>
+          <label className="form-check-label">One-Shot</label>
+        </div>
+        <div className="form-check form-check-inline">
           <input
-            type="radio"
+            type="checkbox"
             name="sessionType"
             value="multisession"
             checked={!isOneShot}
             onChange={() => setIsOneShot(false)}
+            className="form-check-input"
           />
-          Multi-Session
-        </label>
+          <label className="form-check-label">Multi-Session</label>
+        </div>
       </div>
 
       {/* Roleplay Preference */}
       <div>
-        <label>Roleplay Preference: </label>
-        {[
-          { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
-          {
-            value: "Mostly Gameplay, Some Roleplay",
-            label: "Mostly Gameplay, Some Roleplay",
-          },
-          { value: "Both", label: "Both" },
-          {
-            value: "Mostly Roleplay, Some Gameplay",
-            label: "Mostly Roleplay, Some Gameplay",
-          },
-          { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
-        ].map((option) => (
-          <label key={option.value}>
-            <input
-              type="radio"
-              value={option.value}
-              checked={rpPref === option.value}
-              onChange={() => setRpPref(option.value)}
-            />
-            {option.label}
-          </label>
-        ))}
+        <label style={{ fontWeight: "bold" }}>Roleplay Preference</label>
+        <div>
+          {[
+            { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
+            {
+              value: "Mostly Gameplay, Some Roleplay",
+              label: "Mostly Gameplay, Some Roleplay",
+            },
+            { value: "Both", label: "Both" },
+            {
+              value: "Mostly Roleplay, Some Gameplay",
+              label: "Mostly Roleplay, Some Gameplay",
+            },
+            { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
+          ].map((option) => (
+            <div key={option.value} className="form-check form-check-inline">
+              <input
+                type="checkbox"
+                value={option.value}
+                checked={rpPref === option.value}
+                onChange={() => setRpPref(option.value)}
+                className="form-check-input"
+              />
+              <label className="form-check-label">{option.label}</label>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Max Players */}

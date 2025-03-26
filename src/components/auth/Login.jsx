@@ -17,16 +17,23 @@ export const Login = () => {
     }
 
     try {
+      // Fetch user data by email
       const foundUsers = await getUserByEmail(email);
-
-      if (foundUsers.length === 1 && foundUsers[0].username === username) {
-        localStorage.setItem(
-          "ttrpg_user",
-          JSON.stringify({ id: foundUsers[0].id })
-        );
-        navigate("/all-games");
+  
+      // Check if the user exists
+      if (foundUsers.length === 1) {
+        const user = foundUsers[0];
+  
+        // Compare the entered password with the stored hashed password
+        if (user.password === password) { // Replace this with actual hashed password comparison if needed
+          // Store user information in local storage if login is successful
+          localStorage.setItem("ttrpg_user", JSON.stringify({ id: user.id }));
+          navigate("/all-games");
+        } else {
+          window.alert("Incorrect password. Please try again.");
+        }
       } else {
-        window.alert("Invalid login. Check username and email.");
+        window.alert("No user found with that email address.");
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -38,8 +45,8 @@ export const Login = () => {
     <main className="container-login">
       <section>
         <form className="form-login" onSubmit={handleLogin}>
-          <h1>TTRPG Scheduler</h1>
-          <h2>Please sign in</h2>
+          <h1 className="text-center">TTRPG Scheduler</h1>
+          <h2 className="text-center">Please sign in</h2>
           <fieldset>
             <div className="form-group">
               <input
@@ -76,14 +83,14 @@ export const Login = () => {
               />
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset className="text-center">
             <button className="login-btn form-btn btn-secondary" type="submit">
               Sign In
             </button>
           </fieldset>
         </form>
       </section>
-      <section>
+      <section className="text-center">
         <Link to="/register">Not a member yet?</Link>
       </section>
     </main>

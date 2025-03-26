@@ -42,7 +42,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
 
   return (
     <div className="edit-profile-form">
-      <h2>Edit Profile</h2>
+      <h2 className="text-center">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username</label>

@@ -57,8 +57,8 @@ export const Register = () => {
   return (
     <main className="container-login">
       <form className="form-login" onSubmit={handleRegister}>
-        <h1>TTRPG Scheduler</h1>
-        <h2>Please Register</h2>
+        <h1 className="text-center">TTRPG Scheduler</h1>
+        <h2 className="text-center">Please Register</h2>
         <fieldset>
           <div className="form-group">
             <input
@@ -111,7 +111,7 @@ export const Register = () => {
             />
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset className="text-center">
           <button className="login-btn form-btn btn-secondary" type="submit">
             Register
           </button>

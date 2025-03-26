@@ -48,7 +48,7 @@ export const GameList = ({ games }) => {
 
   return (
     <div className="game-list">
-      <h2>All Games</h2>
+      <h2 className="text-center">All Games</h2>
 
       {/* Game Filter Bar with handleFilter func as prop */}
       <GameFilterBar onFilter={handleFilter} />

@@ -47,45 +47,73 @@ export const GameFilterBar = ({ onFilter }) => {
 
       {/* Session Type Radio Buttons (Deselectable) */}
       <div>
-        <label>
+        <strong>Session Type</strong>
+        <div className="form-check form-check-inline">
           <input
             type="checkbox"
+            className="form-check-input"
+            id="oneshot"
+            name="sessionType"
             value="oneshot"
             checked={sessionType === "oneshot"}
             onChange={() => handleSessionTypeChange("oneshot")}
           />
-          One-Shot
-        </label>
-        <label>
+          <label className="form-check-label" htmlFor="oneshot">
+            One-Shot
+          </label>
+        </div>
+        <div className="form-check form-check-inline">
           <input
             type="checkbox"
+            className="form-check-input"
+            id="campaign"
+            name="sessionType"
             value="campaign"
             checked={sessionType === "campaign"}
             onChange={() => handleSessionTypeChange("campaign")}
           />
-          Campaign
-        </label>
+          <label className="form-check-label" htmlFor="campaign">
+            Campaign
+          </label>
+        </div>
       </div>
 
       {/* Roleplaying Preference Likert Scale (Deselectable) */}
       <div>
-        {[
-          { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
-          { value: "Mostly Gameplay, Some Roleplay", label: "Mostly Gameplay, Some Roleplay" },
-          { value: "Both", label: "Both" },
-          { value: "Mostly Roleplay, Some Gameplay", label: "Mostly Roleplay, Some Gameplay" },
-          { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
-        ].map((option) => (
-          <label key={option.value}>
-            <input
-              type="checkbox"
-              value={option.value}
-              checked={rpPref === option.value}
-              onChange={() => handleRpPrefChange(option.value)}
-            />
-            {option.label}
-          </label>
-        ))}
+        <strong>Roleplay Preference</strong>
+        <div>
+          {[
+            { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
+            {
+              value: "Mostly Gameplay, Some Roleplay",
+              label: "Mostly Gameplay, Some Roleplay",
+            },
+            { value: "Both", label: "Both" },
+            {
+              value: "Mostly Roleplay, Some Gameplay",
+              label: "Mostly Roleplay, Some Gameplay",
+            },
+            { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
+          ].map((option) => (
+            <div
+              key={option.value}
+              className="form-check form-check-inline"
+              style={{ marginRight: "15px" }} // Ensure spacing
+            >
+              <input
+                type="checkbox"
+                value={option.value}
+                checked={rpPref === option.value}
+                onChange={() => handleRpPrefChange(option.value)}
+                className="form-check-input"
+                id={option.value}
+              />
+              <label className="form-check-label" htmlFor={option.value}>
+                {option.label}
+              </label>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

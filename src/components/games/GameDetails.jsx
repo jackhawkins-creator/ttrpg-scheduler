@@ -64,7 +64,7 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
 
   return (
     <div className="game-details">
-      <h1>{game.group_name}</h1>
+      <h1 className="text-center">{game.group_name}</h1>
       <p>
         <strong>Ruleset:</strong> {game.ruleset}
       </p>

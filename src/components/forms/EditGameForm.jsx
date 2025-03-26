@@ -69,7 +69,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
 
   return (
     <div className="edit-game-form">
-      <h2>Edit Game</h2>
+      <h2 className="text-center">Edit Game</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Group Name</label>
@@ -137,48 +137,71 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>
+          <label style={{ fontWeight: "bold" }}>Session Type</label>
+          <div className="form-check form-check-inline">
             <input
-              type="radio"
+              type="checkbox"
               name="sessionType"
               value="oneshot"
-              checked={isOneShot}
+              checked={isOneShot === true}
               onChange={() => setIsOneShot(true)}
+              className="form-check-input"
+              id="oneshot"
             />
-            One-Shot
-          </label>
-          <label>
+            <label className="form-check-label" htmlFor="oneshot">
+              One-Shot
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
             <input
-              type="radio"
+              type="checkbox"
               name="sessionType"
               value="multisession"
-              checked={!isOneShot}
+              checked={isOneShot === false}
               onChange={() => setIsOneShot(false)}
+              className="form-check-input"
+              id="multisession"
             />
-            Multi-Session
-          </label>
+            <label className="form-check-label" htmlFor="multisession">
+              Multi-Session
+            </label>
+          </div>
         </div>
 
         <div>
-          <label>Roleplay Preference: </label>
-          {[
-            { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
-            { value: "Mostly Gameplay, Some Roleplay", label: "Mostly Gameplay, Some Roleplay" },
-            { value: "Both", label: "Both" },
-            { value: "Mostly Roleplay, Some Gameplay", label: "Mostly Roleplay, Some Gameplay" },
-            { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
-          ].map((option) => (
-            <label key={option.value}>
-              <input
-                type="radio"
-                name="rpPref"
-                value={option.value}
-                checked={rpPref === option.value}
-                onChange={() => setRpPref(option.value)}
-              />
-              {option.label}
-            </label>
-          ))}
+          <label style={{ fontWeight: "bold" }}>Roleplay Preference</label>
+          <div>
+            {[
+              {
+                value: "Heavy Gameplay Focus",
+                label: "Heavy Gameplay Focus",
+              },
+              {
+                value: "Mostly Gameplay, Some Roleplay",
+                label: "Mostly Gameplay, Some Roleplay",
+              },
+              { value: "Both", label: "Both" },
+              {
+                value: "Mostly Roleplay, Some Gameplay",
+                label: "Mostly Roleplay, Some Gameplay",
+              },
+              { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
+            ].map((option) => (
+              <div key={option.value} className="form-check form-check-inline">
+                <input
+                  type="checkbox"
+                  value={option.value}
+                  checked={rpPref === option.value}
+                  onChange={() => setRpPref(option.value)}
+                  className="form-check-input"
+                  id={option.value}
+                />
+                <label className="form-check-label" htmlFor={option.value}>
+                  {option.label}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>

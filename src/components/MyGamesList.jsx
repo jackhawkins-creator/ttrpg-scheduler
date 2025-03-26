@@ -49,7 +49,7 @@ export const MyGamesList = ({ triggerGameListRefresh }) => {
 
   return (
     <div className="game-list">
-      <h2>My Games</h2>
+      <h2 className="text-center">My Games</h2>
       {myGames.length > 0 ? (
         <ul>
           {myGames.map((game) => (

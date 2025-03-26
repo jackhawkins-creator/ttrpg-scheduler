@@ -3,19 +3,38 @@
 body {
   background-color: #f5f5f5; /* Light parchment background */
   font-family: 'Cinzel', serif; /* Elegant, medieval-inspired font */
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Settings */
+.container {
+  padding: 20px;
 }
 
 /* Navbar styles */
 .navbar {
   background-color: #2d1b0e; /* Dark wood brown */
+  list-style-type: none; /* Removes the bullets */
+  padding-left: 0; /* Removes left padding */
+}
+
+.navbar-item {
+  display: inline-block; /* Keeps items in a row */
+  margin-right: 20px; /* Optional: Adds space between items */
 }
 
 .navbar a {
   color: #cfa12d; /* Gold for text */
+  font-size: 18px; /* Consistent text size for navbar */
 }
 
 .navbar a:hover {
   color: #f4e1a1; /* Light gold on hover */
+}
+
+.navbar-toggler {
+  border-color: #cfa12d;
 }
 
 /* Button styles */
@@ -23,36 +42,49 @@ body {
   background-color: #9e7a4d; /* Rustic bronze for buttons */
   color: white;
   border: none;
+  padding: 0.5rem 1rem;
 }
 
 .btn:hover {
   background-color: #cfa12d; /* Gold on hover */
 }
 
+.btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(207, 161, 45, 0.5);
+}
+
 /* Card styles */
 .card {
   background-color: #fff8e1; /* Slight parchment background for cards */
   border: 1px solid #6b4f2d; /* Dark border */
+  margin-bottom: 20px;
+  border-radius: 8px; /* Rounded corners for cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
   background-color: #2d1b0e; /* Dark wood for card headers */
   color: #cfa12d; /* Gold text */
+  font-size: 1.2rem; /* Larger font size for card headers */
+  padding: 0.75rem 1.25rem;
 }
 
 .card-footer {
   background-color: #f1e0c6; /* Lighter parchment */
+  padding: 0.5rem 1.25rem;
 }
 
 /* Headings */
 h1, h2, h3 {
   font-family: 'Cinzel', serif;
   color: #2d1b0e; /* Dark brown for headings */
+  font-size: 2rem;
 }
 
 h4, h5, h6 {
   font-family: 'Cinzel', serif;
   color: #9e7a4d; /* Rustic bronze for smaller headings */
+  font-size: 1.5rem;
 }
 
 /* Inputs, select, and other form elements */
@@ -60,6 +92,10 @@ input, select, textarea {
   background-color: #fff8e1;
   border: 1px solid #6b4f2d;
   color: #2d1b0e;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  width: 100%;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -70,20 +106,29 @@ input:focus, select:focus, textarea:focus {
 .game-card {
   border: 1px solid #6b4f2d;
   background-color: #f5e1a1;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 1rem;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .game-card button {
   background-color: #9e7a4d;
   color: white;
+  padding: 0.5rem 1rem;
 }
 
 .game-card button:hover {
   background-color: #cfa12d;
 }
 
-/* Make Navbar Mobile Friendly */
+.form-check-inline {
+  display: inline-block;
+  margin-right: 15px; /* Add space between checkboxes */
+  max-width: 45%; /* Prevent horizontal stretching */
+}
+
+/* Adjusted Navbar Mobile Responsiveness */
 @media (max-width: 768px) {
   .navbar {
     font-size: 14px; /* Reduce text size on small screens */
@@ -94,8 +139,16 @@ input:focus, select:focus, textarea:focus {
   }
 
   .game-card {
-    padding: 15px;
+    padding: 1rem;
     margin-bottom: 10px;
+  }
+
+  .game-card button {
+    width: 100%; /* Full-width buttons inside the game card */
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem; /* Adjust font size for mobile screens */
   }
 }
 
@@ -108,5 +161,23 @@ input:focus, select:focus, textarea:focus {
 
   .game-list .game-card button {
     width: 100%; /* Full-width buttons inside the game card */
+  }
+
+  .game-filter-bar input,
+  .game-filter-bar select,
+  .game-filter-bar button {
+    width: 100%; /* Full-width inputs and buttons in filter bar */
+  }
+}
+
+@media (max-width: 576px) {
+  .form-check {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .form-check-inline {
+    width: 48%; /* Adjust to fit two items per row */
+    margin-right: 5%;
   }
 }
