@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { getGames, postGameParticipant } from "../../services/GameService";
 import { getUserById } from "../../services/userService";
 
-export const GameDetails = () => {
+export const GameDetails = ({ triggerGameListRefresh }) => {
   const { gameId } = useParams(); // Get the game ID from the URL
   const [game, setGame] = useState(null);
   const [organizer, setOrganizer] = useState(null);
@@ -52,6 +52,8 @@ export const GameDetails = () => {
       await postGameParticipant(game.id, currentUser.id); // Add user to the game
       setIsUserParticipating(true);
 
+      triggerGameListRefresh();
+
       // After joining, navigate to "My Games"
       navigate("/my-games");
     } catch (error) {
@@ -87,7 +89,7 @@ export const GameDetails = () => {
       <p>
         <strong>Join URL:</strong>{" "}
         <a href={game.join_url} target="_blank" rel="noopener noreferrer">
-          Join Game
+          Join Link
         </a>
       </p>
 

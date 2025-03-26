@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserById, updateUserProfile } from "../../services/userService";
 
-export const EditProfileForm = () => {
+export const EditProfileForm = ({ triggerGameListRefresh }) => {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
 
@@ -31,6 +31,7 @@ export const EditProfileForm = () => {
     updateUserProfile(currentUser.id, updatedUser)
       .then(() => {
         alert("Profile updated successfully!");
+        triggerGameListRefresh();
         navigate(`/profile/${currentUser.id}`);
       })
       .catch((err) => {

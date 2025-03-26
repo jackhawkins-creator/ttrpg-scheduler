@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getGames, updateGame } from "../../services/GameService";
 
-export const EditGameForm = () => {
+export const EditGameForm = ({ triggerGameListRefresh }) => {
   const { gameId } = useParams();
   const navigate = useNavigate();
 
@@ -58,6 +58,7 @@ export const EditGameForm = () => {
 
     updateGame(gameId, updatedGame)
       .then(() => {
+        triggerGameListRefresh();
         navigate(`/games/${gameId}`); // Go back to GameDetails view
       })
       .catch((err) => {

@@ -6,32 +6,28 @@ import {
   getGames,
 } from "../services/GameService";
 
-export const MyGamesList = () => {
+export const MyGamesList = ({ triggerGameListRefresh }) => {
   const [myGames, setMyGames] = useState([]);
   const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
   const navigate = useNavigate();
 
-  // Fetch games and filter based on user involvement
   useEffect(() => {
-    const fetchGames = async () => {
-      const allGames = await getGames();
-      const filteredGames = allGames.filter(
+    getGames().then((games) => {
+      const filteredGames = games.filter(
         (game) =>
           game.organizer_id === currentUser.id ||
-          game.participants.filter((p) => p.user_id === currentUser.id).length >
-            0
+          game.participants.some((p) => p.user_id === currentUser.id)
       );
       setMyGames(filteredGames);
-    };
-
-    fetchGames();
-  }, [currentUser?.id]);
+    });
+  }, [triggerGameListRefresh]); // Depend on triggerGameListRefresh
 
   // Handle "Leave Game" button click
   const handleLeaveGame = async (gameId) => {
     try {
       await deleteGameParticipant(gameId, currentUser.id);
       setMyGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
+    triggerGameListRefresh();
     } catch (error) {
       console.error("Error leaving game:", error);
       window.alert("An error occurred. Please try again.");
@@ -44,6 +40,7 @@ export const MyGamesList = () => {
       await deleteGame(gameId); // Call the delete function in the service
       setMyGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
       window.alert("Game deleted successfully.");
+      triggerGameListRefresh();
     } catch (error) {
       console.error("Error deleting game:", error);
       window.alert("An error occurred. Please try again.");

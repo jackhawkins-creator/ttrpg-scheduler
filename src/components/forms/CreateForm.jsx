@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createGame } from "../../services/GameService";
 
-export const CreateForm = () => {
+export const CreateForm = ({ triggerGameListRefresh }) => {
   const [groupName, setGroupName] = useState("");
   const [ruleset, setRuleset] = useState("");
   const [date, setDate] = useState("");
@@ -49,6 +49,7 @@ export const CreateForm = () => {
 
     try {
       await createGame(newGame);
+      triggerGameListRefresh();
       navigate("/my-games");
     } catch (error) {
       console.error("Error creating game:", error);
