@@ -11,7 +11,7 @@ export const CreateForm = ({ triggerGameListRefresh }) => {
   const [joinUrl, setJoinUrl] = useState("");
   const [rulesets, setRulesets] = useState([]);
   const [isOneShot, setIsOneShot] = useState(false); // Default is Multi-Session
-  const [rpPref, setRpPref] = useState(3); // Default middle of the Likert scale (3)
+  const [rpPref, setRpPref] = useState("Both");
   const [maxPlayers, setMaxPlayers] = useState(6); // Default max players
 
   const navigate = useNavigate();
@@ -141,18 +141,30 @@ export const CreateForm = ({ triggerGameListRefresh }) => {
         </label>
       </div>
 
-      {/* Roleplay Preference (Likert scale 1-5) */}
+      {/* Roleplay Preference */}
       <div>
         <label>Roleplay Preference: </label>
-        {[1, 2, 3, 4, 5].map((num) => (
-          <label key={num}>
+        {[
+          { value: "Heavy Gameplay Focus", label: "Heavy Gameplay Focus" },
+          {
+            value: "Mostly Gameplay, Some Roleplay",
+            label: "Mostly Gameplay, Some Roleplay",
+          },
+          { value: "Both", label: "Both" },
+          {
+            value: "Mostly Roleplay, Some Gameplay",
+            label: "Mostly Roleplay, Some Gameplay",
+          },
+          { value: "Heavy Roleplay Focus", label: "Heavy Roleplay Focus" },
+        ].map((option) => (
+          <label key={option.value}>
             <input
-              type="checkbox"
-              value={num}
-              checked={rpPref === num}
-              onChange={() => setRpPref(num)}
+              type="radio"
+              value={option.value}
+              checked={rpPref === option.value}
+              onChange={() => setRpPref(option.value)}
             />
-            {num}
+            {option.label}
           </label>
         ))}
       </div>

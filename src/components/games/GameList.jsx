@@ -40,7 +40,7 @@ export const GameList = ({ games }) => {
 
     // RP Preference filter
     if (rpPref) {
-      filtered = filtered.filter((game) => game.rp_pref === parseInt(rpPref));
+      filtered = filtered.filter((game) => game.rp_pref === rpPref);
     }
 
     setFilteredGames(filtered); // Update filtered games state
@@ -57,7 +57,7 @@ export const GameList = ({ games }) => {
       {filteredGames.map((game) => (
         <div key={game.id} className="game-card">
           <button
-            onClick={() => navigate(`/games/${game.id}`)}  //navigate to game deets
+            onClick={() => navigate(`/games/${game.id}`)} //navigate to game deets
             className="group-name"
           >
             {game.group_name}

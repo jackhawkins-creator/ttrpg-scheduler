@@ -29,12 +29,6 @@
       "email": "dave@email.com",
       "password": "12345",
       "id": 5
-    },
-    {
-      "username": "agrippatherippa",
-      "email": "nicholas.m.hodge@gmail.com",
-      "password": "1",
-      "id": 6
     }
   ],
   "rulesets": [
@@ -61,8 +55,8 @@
       "end_time": "22:00",
       "join_url": "https://example.com/join/lostdungeon",
       "organizer_id": 1,
-      "max_players": 4,
-      "rp_pref": 4,
+      "max_players": 3,
+      "rp_pref": "Mostly Gameplay, Some Roleplay",
       "isOneShot": false
     },
     {
@@ -75,21 +69,8 @@
       "join_url": "https://example.com/join/cthulhu",
       "organizer_id": 3,
       "max_players": 4,
-      "rp_pref": 5,
+      "rp_pref": "Both",
       "isOneShot": true
-    },
-    {
-      "group_name": "buddies",
-      "ruleset_id": 1,
-      "date": "2025-04-01",
-      "start_time": "17:32",
-      "end_time": "20:32",
-      "join_url": "http://www.buddies.com",
-      "organizer_id": 5,
-      "isOneShot": true,
-      "rp_pref": 2,
-      "max_players": 75,
-      "id": 4
     }
   ],
   "game_participants": [
@@ -117,20 +98,6 @@
       "id": 5,
       "game_id": 2,
       "user_id": 4
-    },
-    {
-      "user_id": 1,
-      "id": 6
-    },
-    {
-      "game_id": 2,
-      "user_id": 6,
-      "id": 7
-    },
-    {
-      "game_id": 2,
-      "user_id": 5,
-      "id": 8
     }
   ]
 }
