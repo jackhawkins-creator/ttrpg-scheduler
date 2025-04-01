@@ -9,15 +9,28 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
     if (currentUser) {
       getUserById(currentUser.id).then((userData) => {
         setUsername(userData.username);
         setEmail(userData.email);
+        setProfilePic(userData.profile_pic);
       });
     }
   }, []);
+
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePic(reader.result); // Set base64 string as profile picture
+      };
+      reader.readAsDataURL(file); // Read file as base64 URL
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +39,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
       username,
       email,
       password: password || undefined, // Only update if a new password is entered
+      profile_pic: profilePic,
     };
 
     updateUserProfile(currentUser.id, updatedUser)
@@ -72,6 +86,18 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter new password (optional)"
           />
+        </div>
+
+        <div>
+          <label>Profile Picture</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleProfilePicChange}
+          />
+          {profilePic && (
+            <img src={profilePic} alt="Profile Preview" width={100} />
+          )}
         </div>
 
         <button type="submit">Save Changes</button>

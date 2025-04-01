@@ -8,6 +8,7 @@ export const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    profilePic: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
   });
 
   const navigate = useNavigate();
@@ -19,10 +20,24 @@ export const Register = () => {
     });
   };
 
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          profilePic: reader.result, // Set base64 string as profile picture
+        }));
+      };
+      reader.readAsDataURL(file); // Read file as base64 URL
+    }
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const { username, email, password, confirmPassword } = formData;
+    const { username, email, password, confirmPassword, profilePic } = formData;
 
     if (!username || !email || !password || !confirmPassword) {
       window.alert("Please fill out all fields");
@@ -42,7 +57,12 @@ export const Register = () => {
         return;
       }
 
-      const newUser = await createUser({ username, email, password });
+      const newUser = await createUser({
+        username,
+        email,
+        password,
+        profile_pic: profilePic,
+      });
 
       if (newUser?.id) {
         localStorage.setItem("ttrpg_user", JSON.stringify({ id: newUser.id }));
@@ -108,6 +128,15 @@ export const Register = () => {
               onChange={updateFormData}
               placeholder="Confirm Password"
               required
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleProfilePicChange}
             />
           </div>
         </fieldset>

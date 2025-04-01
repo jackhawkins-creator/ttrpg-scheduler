@@ -19,8 +19,11 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
       const selectedGame = games.find((game) => game.id === parseInt(gameId));
       setGame(selectedGame);
 
-      // Get the organizer info
-      getUserById(selectedGame.organizer_id).then(setOrganizer);
+      // Get the organizer info (including profile pic)
+      setOrganizer({
+        username: selectedGame.organizerUsername,
+        profilePic: selectedGame.organizerProfilePic,
+      });
 
       // Get player info (excluding the organizer)
       const playerPromises = selectedGame.participants.map((participant) =>
@@ -70,14 +73,32 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
       </p>
       <p>
         <strong>Organizer:</strong>{" "}
-        <Link to={`/profile/${organizer.id}`}>{organizer.username}</Link>
+        <div className="user-info">
+          <img
+            src={organizer.profilePic}
+            alt={`${organizer.username}'s profile`}
+            width={50}
+            height={50}
+            style={{ borderRadius: "50%" }}
+          />
+          <Link to={`/profile/${game.organizer_id}`}>{organizer.username}</Link>
+        </div>
       </p>
 
       <h3>Players:</h3>
       <ul>
         {players.map((player) => (
           <li key={player.id}>
-            <Link to={`/profile/${player.id}`}>{player.username}</Link>
+            <div className="user-info">
+              <img
+                src={player.profile_pic}
+                alt={`${player.username}'s profile`}
+                width={50}
+                height={50}
+                style={{ borderRadius: "50%" }}
+              />
+              <Link to={`/profile/${player.id}`}>{player.username}</Link>
+            </div>
           </li>
         ))}
       </ul>
@@ -93,14 +114,6 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
         </a>
       </p>
 
-      {/* Display the "Edit Game" button only if the current user is the organizer */}
-      {currentUser.id === game.organizer_id && (
-        <Link to={`/edit-game/${game.id}`} className="btn btn-primary">
-          Edit Game
-        </Link>
-      )}
-
-      {/* Display the "Join Game" button if the user is not a participant and the game is not full */}
       {currentUser.id !== game.organizer_id &&
         !isUserParticipating &&
         !isGameFull && <button onClick={handleJoinGame}>Join Game</button>}
@@ -108,6 +121,12 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
       {isGameFull && <p>This game is full.</p>}
       {isUserParticipating && (
         <p>You are already a participant in this game.</p>
+      )}
+
+      {currentUser.id === game.organizer_id && (
+        <Link to={`/edit-game/${game.id}`} className="btn btn-primary">
+          Edit Game
+        </Link>
       )}
     </div>
   );

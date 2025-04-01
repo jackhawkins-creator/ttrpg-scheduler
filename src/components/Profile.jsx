@@ -34,7 +34,18 @@ export const Profile = () => {
   return (
     <div className="profile">
       <h2 className="text-center">{user.username}</h2>
-      <h3 className="text-center">Current Games:</h3>
+      {user.profile_pic && (
+        <div className="profile-pic">
+          <img
+            src={user.profile_pic}
+            alt={`${user.username}'s profile`}
+            width={150}
+            height={150}
+            style={{ borderRadius: "50%" }}
+          />
+        </div>
+      )}
+      <h3>Current Games:</h3>
       {games.length > 0 ? (
         <ul>
           {games.map((game) => (

@@ -21,6 +21,7 @@ export const getGames = async () => {
     return {
       ...game,
       organizerUsername: organizer ? organizer.username : "Unknown",
+      organizerProfilePic: organizer ? organizer.profile_pic : "",
       currentPlayers: currentPlayers.length,
       participants: currentPlayers,
       ruleset: ruleset ? ruleset.name : "Unknown",
@@ -43,17 +44,17 @@ export const createGame = async (game) => {
 };
 
 export const updateGame = async (gameId, updatedGame) => {
-    const res = await fetch(`http://localhost:8088/games/${gameId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedGame),
-    });
-    
-    if (!res.ok) {
-        throw new Error("Failed to update game");
-    }
-    
-    return await res.json();
+  const res = await fetch(`http://localhost:8088/games/${gameId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedGame),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to update game");
+  }
+
+  return await res.json();
 };
 
 export const deleteGame = async (gameId) => {
@@ -103,28 +104,31 @@ export const postGameParticipant = async (gameId, userId) => {
 };
 
 export const deleteGameParticipant = async (gameId, userId) => {
-    // Find the participant record
-    const participants = await fetch("http://localhost:8088/game_participants")
-      .then((res) => res.json())
-      .then((data) =>
-        data.find(
-          (participant) => participant.game_id === gameId && participant.user_id === userId
-        )
-      );
-  
-    if (!participants) {
-      throw new Error("Participant not found.");
-    }
-  
-    // Delete the participant from the join table
-    const response = await fetch(`http://localhost:8088/game_participants/${participants.id}`, {
+  // Find the participant record
+  const participants = await fetch("http://localhost:8088/game_participants")
+    .then((res) => res.json())
+    .then((data) =>
+      data.find(
+        (participant) =>
+          participant.game_id === gameId && participant.user_id === userId
+      )
+    );
+
+  if (!participants) {
+    throw new Error("Participant not found.");
+  }
+
+  // Delete the participant from the join table
+  const response = await fetch(
+    `http://localhost:8088/game_participants/${participants.id}`,
+    {
       method: "DELETE",
-    });
-  
-    if (!response.ok) {
-      throw new Error("Failed to leave game");
     }
-  
-    return await response.json();
-  };
-  
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to leave game");
+  }
+
+  return await response.json();
+};
