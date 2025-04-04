@@ -5,6 +5,8 @@ export const GameFilterBar = ({ onFilter }) => {
   const [ruleset, setRuleset] = useState("");
   const [sessionType, setSessionType] = useState(null);
   const [rpPref, setRpPref] = useState(null);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [rulesets, setRulesets] = useState([]);
 
   useEffect(() => {
@@ -14,8 +16,8 @@ export const GameFilterBar = ({ onFilter }) => {
   }, []);
 
   useEffect(() => {
-    onFilter({ search, ruleset, sessionType, rpPref });
-  }, [search, ruleset, sessionType, rpPref]); //updates whenever we hear a change
+    onFilter({ search, ruleset, sessionType, rpPref, startTime, endTime });
+  }, [search, ruleset, sessionType, rpPref, startTime, endTime]); //updates whenever we hear a change
 
   const handleSessionTypeChange = (value) => {
     setSessionType((prev) => (prev === value ? null : value));
@@ -114,6 +116,25 @@ export const GameFilterBar = ({ onFilter }) => {
             </div>
           ))}
         </div>
+      </div>
+      {/* Start Time Filter */}
+      <div>
+        <label>Start Time</label>
+        <input
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+        />
+      </div>
+
+      {/* End Time Filter */}
+      <div>
+        <label>End Time</label>
+        <input
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+        />
       </div>
     </div>
   );

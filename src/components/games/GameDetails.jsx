@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getGames, postGameParticipant } from "../../services/GameService";
+import {
+  getGames,
+  postGameParticipant,
+  deleteGameParticipant,
+} from "../../services/GameService";
 import { getUserById } from "../../services/userService";
 
 export const GameDetails = ({ triggerGameListRefresh }) => {
@@ -10,6 +14,7 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
   const [players, setPlayers] = useState([]);
   const [isUserParticipating, setIsUserParticipating] = useState(false);
   const [isGameFull, setIsGameFull] = useState(false);
+  const [confirmation, setConfirmation] = useState(null);
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("ttrpg_user"));
 
@@ -65,6 +70,34 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
     }
   };
 
+  // Handle player removal confirmation
+  const handleRemovePlayer = (playerId) => {
+    setConfirmation({
+      playerId: playerId,
+      message: `Are you sure you want to remove this player from the game?`,
+    });
+  };
+
+  // Confirm removal of the player
+  const confirmRemoval = async () => {
+    try {
+      await deleteGameParticipant(game.id, confirmation.playerId);
+      setPlayers(
+        players.filter((player) => player.id !== confirmation.playerId)
+      ); // Update the player list
+      setConfirmation(null); // Close the confirmation dialog
+      triggerGameListRefresh(); // Refresh the game list
+    } catch (error) {
+      console.error("Error removing player:", error);
+      window.alert("An error occurred while removing the player.");
+    }
+  };
+
+  // Handle canceling the removal action
+  const cancelRemoval = () => {
+    setConfirmation(null); // Close the confirmation dialog
+  };
+
   return (
     <div className="game-details">
       <h1 className="text-center">{game.group_name}</h1>
@@ -98,10 +131,26 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
                 style={{ borderRadius: "50%" }}
               />
               <Link to={`/profile/${player.id}`}>{player.username}</Link>
+              {currentUser.id === game.organizer_id && (
+                <button
+                  className="remove-player-btn"
+                  onClick={() => handleRemovePlayer(player.id)}
+                >
+                  Remove Player
+                </button>
+              )}
             </div>
           </li>
         ))}
       </ul>
+
+      {confirmation && (
+        <div className="confirmation-dialog">
+          <p>{confirmation.message}</p>
+          <button onClick={confirmRemoval}>Yes</button>
+          <button onClick={cancelRemoval}>No</button>
+        </div>
+      )}
 
       <p>
         <strong>Session Date:</strong> {game.date} from {game.start_time} to{" "}

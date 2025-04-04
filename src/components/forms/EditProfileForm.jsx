@@ -32,6 +32,13 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
     }
   };
 
+  // Handle Delete Profile Picture
+  const handleDeleteProfilePic = () => {
+    setProfilePic(
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -96,7 +103,16 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
             onChange={handleProfilePicChange}
           />
           {profilePic && (
-            <img src={profilePic} alt="Profile Preview" width={100} />
+            <>
+              <img src={profilePic} alt="Profile Preview" width={100} />
+              <button
+                type="button"
+                onClick={handleDeleteProfilePic}
+                className="delete-btn"
+              >
+                Delete Profile Picture
+              </button>
+            </>
           )}
         </div>
 

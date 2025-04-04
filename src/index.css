@@ -181,3 +181,32 @@ input:focus, select:focus, textarea:focus {
     margin-right: 5%;
   }
 }
+
+.remove-player-btn {
+  margin-left: 10px;
+  color: red;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.confirmation-dialog {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+}
+
+.confirmation-dialog button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}

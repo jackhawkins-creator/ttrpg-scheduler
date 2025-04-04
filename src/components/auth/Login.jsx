@@ -45,7 +45,7 @@ export const Login = () => {
     <main className="container-login">
       <section>
         <form className="form-login" onSubmit={handleLogin}>
-          <h1 className="text-center">TTRPG Scheduler</h1>
+          <h1 className="text-center">Rollcall</h1>
           <h2 className="text-center">Please sign in</h2>
           <fieldset>
             <div className="form-group">

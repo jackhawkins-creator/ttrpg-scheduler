@@ -12,7 +12,14 @@ export const GameList = ({ games }) => {
     }
   }, [games]); //will run whenever "games" prop changes
 
-  const handleFilter = ({ search, ruleset, sessionType, rpPref }) => {
+  const handleFilter = ({
+    search,
+    ruleset,
+    sessionType,
+    rpPref,
+    startTime,
+    endTime,
+  }) => {
     let filtered = [...games]; // Shallow copy to avoid mutating original state
 
     // Search filter (group_name or organizer username)
@@ -41,6 +48,16 @@ export const GameList = ({ games }) => {
     // RP Preference filter
     if (rpPref) {
       filtered = filtered.filter((game) => game.rp_pref === rpPref);
+    }
+
+    // Start Time Filter
+    if (startTime) {
+      filtered = filtered.filter((game) => game.start_time >= startTime);
+    }
+
+    // End Time Filter
+    if (endTime) {
+      filtered = filtered.filter((game) => game.end_time <= endTime);
     }
 
     setFilteredGames(filtered); // Update filtered games state
