@@ -27,6 +27,20 @@
       "email": "archer@example.com",
       "password": "hashedpassword4",
       "profile_pic": "https://cdn.discordapp.com/attachments/1090588086347517992/1357621923437084803/000.jpg?ex=67f0df71&is=67ef8df1&hm=10800ff3bcda3cad5f3c2ce759ceffdd04425dd4e3c0905a554b338b315f9960&format=webp"
+    },
+    {
+      "id": 5,
+      "username": "ShieldBearer",
+      "email": "shield@example.com",
+      "password": "hashedpassword5",
+      "profile_pic": "https://static-cdn.jtvnw.net/jtv_user_pictures/9abe3ec0-6851-4af5-b324-948626ec11f3-profile_image-300x300.png"
+    },
+    {
+      "id": 6,
+      "username": "SorcererX",
+      "email": "sorcerer@example.com",
+      "password": "hashedpassword6",
+      "profile_pic": "https://64.media.tumblr.com/403e0de8ebad7e0fa85d6df08f5e9076/a9db494e678090f7-f6/s1280x1920/3bca7f79fb31bda5427331ebe512fff692889946.jpg"
     }
   ],
   "rulesets": [
@@ -41,6 +55,14 @@
     {
       "id": 3,
       "name": "Pathfinder 2e"
+    },
+    {
+      "id": 4,
+      "name": "Shadowrun"
+    },
+    {
+      "id": 5,
+      "name": "Star Wars RPG"
     }
   ],
   "games": [
@@ -69,6 +91,32 @@
       "max_players": 4,
       "rp_pref": "Both",
       "isOneShot": true
+    },
+    {
+      "id": 3,
+      "group_name": "Galactic Conquerors",
+      "ruleset_id": 5,
+      "date": "2025-05-01",
+      "start_time": "20:00",
+      "end_time": "00:00",
+      "join_url": "https://example.com/join/galacticconquerors",
+      "organizer_id": 4,
+      "max_players": 5,
+      "rp_pref": "Mostly Roleplay, Some Gameplay",
+      "isOneShot": false
+    },
+    {
+      "id": 4,
+      "group_name": "Shadowrun Heist",
+      "ruleset_id": 4,
+      "date": "2025-05-05",
+      "start_time": "21:00",
+      "end_time": "01:00",
+      "join_url": "https://example.com/join/shadowrunheist",
+      "organizer_id": 5,
+      "max_players": 4,
+      "rp_pref": "Both",
+      "isOneShot": true
     }
   ],
   "game_participants": [
@@ -83,19 +131,34 @@
       "user_id": 3
     },
     {
-      "id": 4,
+      "id": 3,
       "game_id": 2,
       "user_id": 2
     },
     {
-      "id": 5,
+      "id": 4,
       "game_id": 2,
       "user_id": 4
     },
     {
       "game_id": 1,
       "user_id": 4,
+      "id": 5
+    },
+    {
+      "game_id": 3,
+      "user_id": 5,
       "id": 6
+    },
+    {
+      "game_id": 3,
+      "user_id": 6,
+      "id": 7
+    },
+    {
+      "game_id": 4,
+      "user_id": 6,
+      "id": 8
     }
   ]
 }

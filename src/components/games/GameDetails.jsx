@@ -101,11 +101,11 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
   return (
     <div className="game-details">
       <h1 className="text-center">{game.group_name}</h1>
-      <p>
+      <div>
         <strong>Ruleset:</strong> {game.ruleset}
-      </p>
-      <p>
-        <strong>Organizer:</strong>{" "}
+      </div>
+      <div>
+        <strong>Organizer:</strong>
         <div className="user-info">
           <img
             src={organizer.profilePic}
@@ -113,10 +113,10 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
             width={50}
             height={50}
             style={{ borderRadius: "50%" }}
-          />
+          />{" "}
           <Link to={`/profile/${game.organizer_id}`}>{organizer.username}</Link>
         </div>
-      </p>
+      </div>
 
       <h3>Players:</h3>
       <ul>
@@ -129,14 +129,21 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
                 width={50}
                 height={50}
                 style={{ borderRadius: "50%" }}
-              />
+              />{" "}
               <Link to={`/profile/${player.id}`}>{player.username}</Link>
               {currentUser.id === game.organizer_id && (
                 <button
                   className="remove-player-btn"
                   onClick={() => handleRemovePlayer(player.id)}
+                  style={{
+                    fontSize: "24px",
+                    color: "red",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
                 >
-                  Remove Player
+                  ❌
                 </button>
               )}
             </div>
@@ -155,12 +162,6 @@ export const GameDetails = ({ triggerGameListRefresh }) => {
       <p>
         <strong>Session Date:</strong> {game.date} from {game.start_time} to{" "}
         {game.end_time}
-      </p>
-      <p>
-        <strong>Join URL:</strong>{" "}
-        <a href={game.join_url} target="_blank" rel="noopener noreferrer">
-          Join Link
-        </a>
       </p>
 
       {currentUser.id !== game.organizer_id &&

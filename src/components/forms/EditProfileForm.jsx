@@ -66,7 +66,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
       <h2 className="text-center">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username</label>
+          <label style={{ marginRight: '8px' }}>Username</label>
           <input
             type="text"
             value={username}
@@ -76,7 +76,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Email</label>
+          <label style={{ marginRight: '8px' }}>Email</label>
           <input
             type="email"
             value={email}
@@ -86,7 +86,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>New Password</label>
+          <label style={{ marginRight: '8px' }}>New Password</label>
           <input
             type="password"
             value={password}
@@ -96,7 +96,7 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Profile Picture</label>
+          <label style={{ marginRight: '8px' }}>Profile Picture</label>
           <input
             type="file"
             accept="image/*"
@@ -109,8 +109,15 @@ export const EditProfileForm = ({ triggerGameListRefresh }) => {
                 type="button"
                 onClick={handleDeleteProfilePic}
                 className="delete-btn"
+                style={{
+                  fontSize: "24px",
+                  color: "red",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                }}
               >
-                Delete Profile Picture
+                ❌
               </button>
             </>
           )}

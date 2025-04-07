@@ -27,7 +27,7 @@ export const MyGamesList = ({ triggerGameListRefresh }) => {
     try {
       await deleteGameParticipant(gameId, currentUser.id);
       setMyGames((prevGames) => prevGames.filter((game) => game.id !== gameId));
-    triggerGameListRefresh();
+      triggerGameListRefresh();
     } catch (error) {
       console.error("Error leaving game:", error);
       window.alert("An error occurred. Please try again.");
@@ -51,41 +51,50 @@ export const MyGamesList = ({ triggerGameListRefresh }) => {
     <div className="game-list">
       <h2 className="text-center">My Games</h2>
       {myGames.length > 0 ? (
-        <ul>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           {myGames.map((game) => (
-            <li key={game.id}>
-              <button
-                onClick={() => navigate(`/games/${game.id}`)}
-                className="group-name"
-              >
-                {game.group_name}
-              </button>
-              <p>
-                Scheduled: {game.date} from {game.start_time} to {game.end_time}
-              </p>
-              <p>Organizer: {game.organizerUsername}</p>
-              <p>
-                Players: {game.currentPlayers}/{game.max_players}
-              </p>
+            <div key={game.id} className="col">
+              <div className="game-card p-3 border rounded shadow-sm">
+                <button
+                  onClick={() => navigate(`/games/${game.id}`)}
+                  className="group-name btn btn-link"
+                >
+                  {game.group_name}
+                </button>
+                <p>
+                  Scheduled: {game.date} from {game.start_time} to{" "}
+                  {game.end_time}
+                </p>
+                <p>Organizer: {game.organizerUsername}</p>
+                <p>
+                  Player Slots Filled: {game.currentPlayers}/{game.max_players}
+                </p>
 
-              {/* Show "Leave Game" button if the current user is a participant, but not the organizer */}
-              {game.organizer_id !== currentUser.id &&
-                game.participants.filter((p) => p.user_id === currentUser.id)
-                  .length > 0 && (
-                  <button onClick={() => handleLeaveGame(game.id)}>
-                    Leave Game
+                {/* Show "Leave Game" button if the current user is a participant, but not the organizer */}
+                {game.organizer_id !== currentUser.id &&
+                  game.participants.filter((p) => p.user_id === currentUser.id)
+                    .length > 0 && (
+                    <button
+                      onClick={() => handleLeaveGame(game.id)}
+                      className="btn btn-danger mt-2"
+                    >
+                      Leave Game
+                    </button>
+                  )}
+
+                {/* Show "Delete Game" button if the current user is the organizer */}
+                {game.organizer_id === currentUser.id && (
+                  <button
+                    onClick={() => handleDeleteGame(game.id)}
+                    className="btn btn-danger mt-2"
+                  >
+                    Delete Game
                   </button>
                 )}
-
-              {/* Show "Delete Game" button if the current user is the organizer */}
-              {game.organizer_id === currentUser.id && (
-                <button onClick={() => handleDeleteGame(game.id)}>
-                  Delete Game
-                </button>
-              )}
-            </li>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>You are not currently in any games.</p>
       )}

@@ -72,7 +72,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
       <h2 className="text-center">Edit Game</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Group Name</label>
+          <label style={{ marginRight: '8px' }}>Group Name</label>
           <input
             type="text"
             value={groupName}
@@ -82,7 +82,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Ruleset</label>
+          <label style={{ marginRight: '8px' }}>Ruleset</label>
           <select
             value={ruleset}
             onChange={(e) => setRuleset(e.target.value)}
@@ -97,7 +97,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Date</label>
+          <label style={{ marginRight: '8px' }}>Date</label>
           <input
             type="date"
             value={date}
@@ -107,7 +107,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Start Time</label>
+          <label style={{ marginRight: '8px' }}>Start Time</label>
           <input
             type="time"
             value={startTime}
@@ -117,7 +117,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>End Time</label>
+          <label style={{ marginRight: '8px' }}>End Time</label>
           <input
             type="time"
             value={endTime}
@@ -127,7 +127,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Join URL</label>
+          <label style={{ marginRight: '8px' }}>Join URL</label>
           <input
             type="url"
             value={joinUrl}
@@ -137,7 +137,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label style={{ fontWeight: "bold" }}>Session Type</label>
+          <label style={{ fontWeight: "bold", marginRight: '8px' }}>Session Type</label>
           <div className="form-check form-check-inline">
             <input
               type="checkbox"
@@ -205,7 +205,7 @@ export const EditGameForm = ({ triggerGameListRefresh }) => {
         </div>
 
         <div>
-          <label>Max Players:</label>
+          <label style={{ marginRight: '8px' }}>Max Players:</label>
           <input
             type="number"
             value={maxPlayers}

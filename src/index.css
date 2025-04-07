@@ -1,212 +1,205 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+/* General Body Styling */
 body {
-  background-color: #f5f5f5; /* Light parchment background */
-  font-family: 'Cinzel', serif; /* Elegant, medieval-inspired font */
-  margin: 0;
-  padding: 0;
+  font-family: 'Merriweather', serif;
+  background-color: #f4f1e1; /* A light parchment color */
+  color: #333;
+  line-height: 1.6;
+  padding-left: 20px;  /* Add padding on the left side */
+  padding-right: 20px; /* Add padding on the right side */
 }
 
-/* Global Settings */
-.container {
-  padding: 20px;
+/* Title Styling */
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  color: #4a2a1d; /* Deep brown to resemble old ink */
 }
 
-/* Navbar styles */
+/* Navbar Custom Styling */
 .navbar {
-  background-color: #2d1b0e; /* Dark wood brown */
-  list-style-type: none; /* Removes the bullets */
-  padding-left: 0; /* Removes left padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #411818; /* Dark stone-like gray */
+  border-bottom: 3px solid #7f6a4d; /* Golden accent border */
+  padding: 10px 20px;
 }
 
 .navbar-item {
-  display: inline-block; /* Keeps items in a row */
-  margin-right: 20px; /* Optional: Adds space between items */
+  list-style: none;
+  padding: 8px 16px;
+  margin-right: 15px;
 }
 
-.navbar a {
-  color: #cfa12d; /* Gold for text */
-  font-size: 18px; /* Consistent text size for navbar */
+.navbar-logout {
+  margin-left: auto; /* Pushes the logout item to the right */
 }
 
-.navbar a:hover {
-  color: #f4e1a1; /* Light gold on hover */
+.navbar-item a {
+  text-decoration: none;
+  color: #f0e6d2; /* Light parchment color */
+  font-family: 'Cinzel', serif;
 }
 
-.navbar-toggler {
-  border-color: #cfa12d;
+.navbar-item a:hover {
+  color: #9e7f4d; /* Light gold highlight */
+  text-decoration: underline;
 }
 
-/* Button styles */
+/* Button Styling (For Login, Logout, etc.) */
 .btn {
-  background-color: #9e7a4d; /* Rustic bronze for buttons */
-  color: white;
+  background-color: #9e7f4d; /* Gold-like button */
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
+  font-family: 'Cinzel', serif;
+  border-radius: 5px;
 }
 
 .btn:hover {
-  background-color: #cfa12d; /* Gold on hover */
+  background-color: #4a2a1d; /* Dark brown on hover */
+  cursor: pointer;
 }
 
-.btn:focus {
-  box-shadow: 0 0 0 0.2rem rgba(207, 161, 45, 0.5);
-}
-
-/* Card styles */
-.card {
-  background-color: #fff8e1; /* Slight parchment background for cards */
-  border: 1px solid #6b4f2d; /* Dark border */
-  margin-bottom: 20px;
-  border-radius: 8px; /* Rounded corners for cards */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-  background-color: #2d1b0e; /* Dark wood for card headers */
-  color: #cfa12d; /* Gold text */
-  font-size: 1.2rem; /* Larger font size for card headers */
-  padding: 0.75rem 1.25rem;
-}
-
-.card-footer {
-  background-color: #f1e0c6; /* Lighter parchment */
-  padding: 0.5rem 1.25rem;
-}
-
-/* Headings */
-h1, h2, h3 {
-  font-family: 'Cinzel', serif;
-  color: #2d1b0e; /* Dark brown for headings */
-  font-size: 2rem;
-}
-
-h4, h5, h6 {
-  font-family: 'Cinzel', serif;
-  color: #9e7a4d; /* Rustic bronze for smaller headings */
-  font-size: 1.5rem;
-}
-
-/* Inputs, select, and other form elements */
-input, select, textarea {
-  background-color: #fff8e1;
-  border: 1px solid #6b4f2d;
-  color: #2d1b0e;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  width: 100%;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #cfa12d;
-}
-
-/* Game List Card Styling */
+/* Game Card Layout Styling */
 .game-card {
-  border: 1px solid #6b4f2d;
-  background-color: #f5e1a1;
-  padding: 1rem;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #d1c5a2; /* Stone-like background */
+  border: 2px solid #4a2a1d; /* Dark border for contrast */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a slight shadow */
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Merriweather', serif;
 }
 
 .game-card button {
-  background-color: #9e7a4d;
-  color: white;
-  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #4a2a1d; /* Dark text for game name */
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
 }
 
 .game-card button:hover {
-  background-color: #cfa12d;
+  color: #9e7f4d; /* Gold-like color when hovered */
+  text-decoration: underline;
 }
 
-.form-check-inline {
-  display: inline-block;
-  margin-right: 15px; /* Add space between checkboxes */
-  max-width: 45%; /* Prevent horizontal stretching */
+.game-list .row {
+  margin-top: 20px;
 }
 
-/* Adjusted Navbar Mobile Responsiveness */
-@media (max-width: 768px) {
-  .navbar {
-    font-size: 14px; /* Reduce text size on small screens */
-  }
-
-  .navbar-item {
-    padding: 0.5rem;
-  }
-
-  .game-card {
-    padding: 1rem;
-    margin-bottom: 10px;
-  }
-
-  .game-card button {
-    width: 100%; /* Full-width buttons inside the game card */
-  }
-
-  h1, h2, h3 {
-    font-size: 1.5rem; /* Adjust font size for mobile screens */
-  }
+.game-list .col {
+  margin-bottom: 20px;
 }
 
-/* Ensure buttons in game list and cards fit well on small screens */
-@media (max-width: 576px) {
-  .btn {
-    width: 100%; /* Full-width buttons on mobile */
-    margin-bottom: 10px;
-  }
-
-  .game-list .game-card button {
-    width: 100%; /* Full-width buttons inside the game card */
-  }
-
-  .game-filter-bar input,
-  .game-filter-bar select,
-  .game-filter-bar button {
-    width: 100%; /* Full-width inputs and buttons in filter bar */
-  }
+/* Login Page Styling */
+.container-login {
+  background-color: #f5f5f5; /* Soft parchment color */
+  padding: 50px 0;
 }
 
-@media (max-width: 576px) {
-  .form-check {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .form-check-inline {
-    width: 48%; /* Adjust to fit two items per row */
-    margin-right: 5%;
-  }
+.form-login {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #4a2a1d;
 }
 
-.remove-player-btn {
-  margin-left: 10px;
-  color: red;
-  border: none;
-  background: transparent;
+.form-login h1 {
+  font-family: 'Cinzel', serif;
+  color: #4a2a1d;
+}
+
+.form-login input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-login input:focus {
+  border-color: #9e7f4d;
+}
+
+.login-btn {
+  background-color: #9e7f4d;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+}
+
+.login-btn:hover {
+  background-color: #4a2a1d;
   cursor: pointer;
 }
 
-.confirmation-dialog {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+/* Profile Page */
+.profile {
+  background-color: #f5f5f5;
   padding: 20px;
+  border-radius: 10px;
 }
 
-.confirmation-dialog button {
+.profile h2 {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #4a2a1d;
+}
+
+.profile-pic img {
+  border-radius: 50%;
+  border: 5px solid #4a2a1d;
+  margin: 0 auto;
+  display: block;
+}
+
+.profile button {
+  background-color: #9e7f4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.profile button:hover {
+  background-color: #4a2a1d;
+}
+
+/* Game Filter Bar Styling */
+.game-filter-bar input,
+.game-filter-bar select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
   margin: 5px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
+  width: 100%;
+}
+
+.game-filter-bar label {
+  font-weight: bold;
+}
+
+.game-filter-bar .form-check-label {
+  font-family: 'Merriweather', serif;
+}
+
+.game-filter-bar .form-check {
+  display: inline-block;  /* Ensures buttons are displayed inline */
+  margin-right: 15px;     /* Adds space between buttons */
+}
+
+.game-filter-bar .form-check-input {
+  width: auto;          /* Prevents buttons from stretching */
+  margin-right: 5px;    /* Adds spacing between the checkbox and its label */
+}
+
+.game-filter-bar .form-check-label {
+  font-family: 'Merriweather', serif;
+  font-weight: normal;   /* You can adjust the font weight here */
+  font-size: 14px;       /* Control font size to fit the design better */
+  display: inline-block; /* Ensures the label aligns next to the checkbox */
 }

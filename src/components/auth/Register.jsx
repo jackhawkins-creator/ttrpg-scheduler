@@ -8,7 +8,8 @@ export const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    profilePic: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    profilePic:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
   });
 
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const Register = () => {
   return (
     <main className="container-login">
       <form className="form-login" onSubmit={handleRegister}>
-        <h1 className="text-center">TTRPG Scheduler</h1>
+        <h1 className="text-center">RollCall</h1>
         <h2 className="text-center">Please Register</h2>
         <fieldset>
           <div className="form-group">
@@ -133,8 +134,12 @@ export const Register = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
+            <label htmlFor="profilePic" className="profile-pic-label">
+              Upload Profile Picture (Optional)
+            </label>
             <input
               type="file"
+              id="profilePic"
               accept="image/*"
               onChange={handleProfilePicChange}
             />

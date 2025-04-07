@@ -67,27 +67,30 @@ export const GameList = ({ games }) => {
     <div className="game-list">
       <h2 className="text-center">All Games</h2>
 
-      {/* Game Filter Bar with handleFilter func as prop */}
       <GameFilterBar onFilter={handleFilter} />
 
-      {/* Display each filtered games in a card */}
-      {filteredGames.map((game) => (
-        <div key={game.id} className="game-card">
-          <button
-            onClick={() => navigate(`/games/${game.id}`)} //navigate to game deets
-            className="group-name"
-          >
-            {game.group_name}
-          </button>
-          <p>
-            Scheduled: {game.date} from {game.start_time} to {game.end_time}
-          </p>
-          <p>Organizer: {game.organizerUsername}</p>
-          <p>
-            Player Slots Filled: {game.currentPlayers}/{game.max_players}
-          </p>
-        </div>
-      ))}
+      {/* Grid layout for game cards */}
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {filteredGames.map((game) => (
+          <div key={game.id} className="col">
+            <div className="game-card p-3 border rounded shadow-sm">
+              <button
+                onClick={() => navigate(`/games/${game.id}`)}
+                className="group-name btn btn-link"
+              >
+                {game.group_name}
+              </button>
+              <p>
+                Scheduled: {game.date} from {game.start_time} to {game.end_time}
+              </p>
+              <p>Organizer: {game.organizerUsername}</p>
+              <p>
+                Player Slots Filled: {game.currentPlayers}/{game.max_players}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

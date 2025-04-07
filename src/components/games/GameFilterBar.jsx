@@ -47,9 +47,29 @@ export const GameFilterBar = ({ onFilter }) => {
         ))}
       </select>
 
+      {/* Start Time Filter */}
+      <div>
+        <label>No earlier than:</label>
+        <input
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+        />
+      </div>
+
+      {/* End Time Filter */}
+      <div>
+        <label>No later than:</label>
+        <input
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+        />
+      </div>
+
       {/* Session Type Radio Buttons (Deselectable) */}
       <div>
-        <strong>Session Type</strong>
+        <strong style={{ marginRight: '8px' }}>Session Type</strong>
         <div className="form-check form-check-inline">
           <input
             type="checkbox"
@@ -116,25 +136,6 @@ export const GameFilterBar = ({ onFilter }) => {
             </div>
           ))}
         </div>
-      </div>
-      {/* Start Time Filter */}
-      <div>
-        <label>Start Time</label>
-        <input
-          type="time"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        />
-      </div>
-
-      {/* End Time Filter */}
-      <div>
-        <label>End Time</label>
-        <input
-          type="time"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-        />
       </div>
     </div>
   );

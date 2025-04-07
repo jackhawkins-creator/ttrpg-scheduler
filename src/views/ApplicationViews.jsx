@@ -7,7 +7,7 @@ import { GameDetails } from "../components/games/GameDetails";
 import { getGames } from "../services/GameService";
 import { CreateForm } from "../components/forms/CreateForm";
 import { EditGameForm } from "../components/forms/EditGameForm";
-import { EditProfileForm } from "../components/forms/editProfileForm";
+import { EditProfileForm } from "../components/forms/EditProfileForm";
 import { MyGamesList } from "../components/MyGamesList";
 
 export const ApplicationViews = () => {
@@ -28,6 +28,7 @@ export const ApplicationViews = () => {
   return (
     <>
       <NavBar />
+      <div className="container mt-4"> {/* Added container class for padding */}
       <Routes>
         {/* Pass games as prop to GameList */}
         <Route path="/all-games" element={<GameList games={games} triggerGameListRefresh={triggerGameListRefresh} />} />
@@ -39,6 +40,7 @@ export const ApplicationViews = () => {
         <Route path="/games/:gameId" element={<GameDetails triggerGameListRefresh={triggerGameListRefresh} />} />
         <Route path="/edit-game/:gameId" element={<EditGameForm triggerGameListRefresh={triggerGameListRefresh} />} />
       </Routes>
+      </div>
     </>
   );
 };
