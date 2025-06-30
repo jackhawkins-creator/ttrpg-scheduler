@@ -65,6 +65,16 @@ export const MyGamesList = ({ triggerGameListRefresh }) => {
                   Scheduled: {game.date} from {game.start_time} to{" "}
                   {game.end_time}
                 </p>
+                <p>
+                  <strong>Join URL:</strong>{" "}
+                  <a
+                    href={game.join_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Link
+                  </a>
+                </p>
                 <p>Organizer: {game.organizerUsername}</p>
                 <p>
                   Player Slots Filled: {game.currentPlayers}/{game.max_players}
