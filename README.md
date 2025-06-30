@@ -25,6 +25,7 @@ Players can browse active games, join open ones, or create their own with custom
 ```bash
 git clone https://github.com/your-username/ttrpg-scheduler.git
 cd ttrpg-scheduler
+```
 
 ### 2. Start the JSON server (API)
 
