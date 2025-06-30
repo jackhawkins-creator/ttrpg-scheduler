@@ -1,4 +1,4 @@
-````markdown
+markdown
 # 🧙‍♂️ TTRPG Scheduler
 
 **TTRPG Scheduler** is a full-stack web app built with React and a JSON server backend that makes organizing and joining tabletop role-playing games (like *Dungeons & Dragons*, *Call of Cthulhu*, etc.) fast, social, and simple.
@@ -26,7 +26,6 @@ Players can browse active games, join open ones, or create their own with custom
 ```bash
 git clone https://github.com/your-username/ttrpg-scheduler.git
 cd ttrpg-scheduler
-````
 
 ### 2. Start the JSON server (API)
 
